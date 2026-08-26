@@ -18,6 +18,7 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
+  const [referencia, setReferencia] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -45,10 +46,17 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
   const cedula = '21175955';
   const bank = 'Banesco';
 
+  // Texto formateado para copiar (estilo Banesco)
+  const paymentText = `Banco: ${bank}\nTeléfono: ${phone}\nCédula: ${cedula}\nMonto: Bs. ${amountBs}`;
+
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setCopied(field);
     setTimeout(() => setCopied(null), 2000);
+  };
+
+  const copyAll = () => {
+    copyToClipboard(paymentText, 'all');
   };
 
   const sendWhatsApp = () => {
@@ -61,7 +69,8 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
       '• Método: Pago Móvil\n' +
       '• Banco: ' + bank + '\n' +
       '• Teléfono: ' + phone + '\n' +
-      '• Cédula: ' + cedula + '\n\n' +
+      '• Cédula: ' + cedula + '\n' +
+      '• Referencia: ' + referencia + '\n\n' +
       'Mis datos:\n' +
       '• Nombre: ' + nombre + ' ' + apellido + '\n' +
       '• Email: ' + email + '\n\n' +
@@ -71,7 +80,7 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
   };
 
   const handleSubmit = () => {
-    if (!nombre || !apellido || !email) return;
+    if (!nombre || !apellido || !email || !referencia) return;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -89,14 +98,13 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
         <h3 style={{ fontSize: 18, fontWeight: 700, color: '#111827', marginBottom: 8 }}>¡Listo!</h3>
         <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 4 }}>Se abrió WhatsApp con tu confirmación.</p>
         <p style={{ fontSize: 12, color: '#9ca3af', marginBottom: 20 }}>Te confirmamos el acceso en menos de 24h.</p>
-        <button onClick={onSuccess} style={{ borderRadius: 10, background: ORANGE, padding: '10px 20px', fontSize: 13, fontWeight: 700, color: 'white', border: 'none', cursor: 'pointer' }}>
-          Entendido
-        </button>
+        <button onClick={onSuccess} style={{ borderRadius: 10, background: ORANGE, padding: '10px 20px', fontSize: 13, fontWeight: 700, color: 'white', border: 'none', cursor: 'pointer' }}>Entendido</button>
       </div>
     );
   }
 
   const inputStyle: React.CSSProperties = { width: '100%', borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', outline: 'none' };
+
   const InfoRow = ({ label, value, field }: { label: string; value: string; field: string }) => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f9fafb', borderRadius: 10, border: '1px solid #f3f4f6' }}>
       <div>
@@ -137,12 +145,33 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
         </div>
       </div>
 
-      {/* Bank details */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
-        <InfoRow label="Banco" value={bank} field="bank" />
-        <InfoRow label="Teléfono" value={phone} field="phone" />
-        <InfoRow label="Cédula/RIF" value={cedula} field="cedula" />
-        <InfoRow label="Monto en Bs." value={`Bs. ${amountBs}`} field="amount" />
+      {/* Bank details + Copy All */}
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#374151' }}>Datos del pago</span>
+          <button onClick={copyAll} style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 10px', borderRadius: 8, background: copied === 'all' ? '#ecfdf5' : '#f0fdf4', border: '1px solid #bbf7d0', cursor: 'pointer', fontSize: 11, fontWeight: 600, color: copied === 'all' ? '#059669' : '#10b981' }}>
+            {copied === 'all' ? <Check style={{ width: 14, height: 14 }} /> : <Copy style={{ width: 14, height: 14 }} />}
+            {copied === 'all' ? 'Copiado!' : 'Copiar todo'}
+          </button>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <InfoRow label="Banco" value={bank} field="bank" />
+          <InfoRow label="Teléfono" value={phone} field="phone" />
+          <InfoRow label="Cédula/RIF" value={cedula} field="cedula" />
+          <InfoRow label="Monto en Bs." value={`Bs. ${amountBs}`} field="amount" />
+        </div>
+      </div>
+
+      {/* Reference */}
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 4 }}>Últimos 4 dígitos de la referencia *</label>
+        <input
+          type="text"
+          placeholder="Ej: 4523"
+          value={referencia}
+          onChange={(e) => setReferencia(e.target.value.replace(/\D/g, '').slice(0, 4))}
+          style={{ ...inputStyle, fontFamily: 'monospace', letterSpacing: 3, textAlign: 'center', fontSize: 16, fontWeight: 700 }}
+        />
       </div>
 
       {/* User data form */}
@@ -152,16 +181,16 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
           <div style={{ display: 'flex', gap: 10 }}>
             <div style={{ flex: 1 }}>
               <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Nombre *</label>
-              <input type="text" placeholder="Tu nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required style={inputStyle} />
+              <input type="text" placeholder="Tu nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} style={inputStyle} />
             </div>
             <div style={{ flex: 1 }}>
               <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Apellido *</label>
-              <input type="text" placeholder="Tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} required style={inputStyle} />
+              <input type="text" placeholder="Tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} style={inputStyle} />
             </div>
           </div>
           <div>
             <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Correo electrónico *</label>
-            <input type="email" placeholder="tu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
+            <input type="email" placeholder="tu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} />
             <p style={{ fontSize: 10, color: '#9ca3af', marginTop: 4 }}>Aquí recibirás tu usuario y contraseña</p>
           </div>
         </div>
@@ -170,17 +199,17 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
       {/* Submit */}
       <button
         onClick={handleSubmit}
-        disabled={!nombre || !apellido || !email || loading}
+        disabled={!nombre || !apellido || !email || !referencia || loading}
         style={{
           width: '100%',
           borderRadius: 10,
           padding: '14px 16px',
           fontSize: 13,
           fontWeight: 700,
-          background: nombre && apellido && email ? ORANGE : '#d1d5db',
+          background: nombre && apellido && email && referencia ? ORANGE : '#d1d5db',
           color: 'white',
           border: 'none',
-          cursor: nombre && apellido && email ? 'pointer' : 'not-allowed',
+          cursor: nombre && apellido && email && referencia ? 'pointer' : 'not-allowed',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
