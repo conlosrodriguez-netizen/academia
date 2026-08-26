@@ -7,6 +7,7 @@ import { Flame, BookOpen } from 'lucide-react';
 interface CourseGridProps {
   courses: Course[];
   onViewDetail: (courseId: string) => void;
+  onViewLanding?: (courseId: string) => void;
 }
 
 export const CourseGrid: React.FC<CourseGridProps> = ({
@@ -63,7 +64,12 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
               {recentCourses.map((course) => (
-                <CourseCard key={course.id} course={course} onViewDetail={onViewDetail} />
+                <CourseCard 
+                  key={course.id} 
+                  course={course} 
+                  onViewDetail={onViewDetail}
+                  onViewLanding={course.id === 'tienda-gemini-sheets' ? () => onViewLanding?.(course.id) : undefined}
+                />
               ))}
             </div>
           </section>
@@ -83,7 +89,12 @@ export const CourseGrid: React.FC<CourseGridProps> = ({
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
               {otherCourses.map((course) => (
-                <CourseCard key={course.id} course={course} onViewDetail={onViewDetail} />
+                <CourseCard 
+                  key={course.id} 
+                  course={course} 
+                  onViewDetail={onViewDetail}
+                  onViewLanding={course.id === 'tienda-gemini-sheets' ? () => onViewLanding?.(course.id) : undefined}
+                />
               ))}
             </div>
           </section>

@@ -13,11 +13,12 @@ import { AuthModal } from './components/AuthModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { AdminPanel } from './components/AdminPanel';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { LandingTienda } from './components/LandingTienda';
 
 export const App: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>(INITIAL_COURSES);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [view, setView] = useState<'home' | 'detail' | 'dashboard' | 'player' | 'about'>('home');
+  const [view, setView] = useState<'home' | 'detail' | 'dashboard' | 'player' | 'about' | 'landing-tienda'>('home');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [checkoutCourse, setCheckoutCourse] = useState<Course | null>(null);
@@ -46,6 +47,11 @@ export const App: React.FC = () => {
   // About page
   if (view === 'about') {
     return <AboutPage onBack={() => setView('home')} />;
+  }
+
+  // Landing Tienda
+  if (view === 'landing-tienda') {
+    return <LandingTienda />;
   }
 
   // Dashboard view (logged in)
@@ -155,6 +161,7 @@ export const App: React.FC = () => {
       <CourseGrid
         courses={courses}
         onViewDetail={(courseId) => { setSelectedCourseId(courseId); setView('detail'); }}
+        onViewLanding={(courseId) => { setSelectedCourseId(courseId); setView('landing-tienda'); }}
       />
 
       <Methodology />

@@ -7,9 +7,10 @@ const ORANGE = '#F59B20';
 interface CourseCardProps {
   course: Course;
   onViewDetail: (courseId: string) => void;
+  onViewLanding?: () => void;
 }
 
-export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail }) => {
+export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail, onViewLanding }) => {
   return (
     <div style={{
       background: 'white',
@@ -68,7 +69,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail }) 
 
         {/* Ver más button */}
         <button
-          onClick={() => onViewDetail(course.id)}
+          onClick={() => onViewLanding ? onViewLanding() : onViewDetail(course.id)}
           style={{
             display: 'flex',
             alignItems: 'center',
