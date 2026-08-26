@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, ArrowLeft, Building2, Camera, Loader2 } from 'lucide-react';
+import { Copy, Check, ArrowLeft, Building2, Camera, Loader2, ExternalLink } from 'lucide-react';
 
 const ORANGE = '#F59B20';
+const WHATSAPP = '5804248804735';
 
 interface PagoMovilProps {
   amountUSD: number;
@@ -10,12 +11,12 @@ interface PagoMovilProps {
   onBack: () => void;
 }
 
-export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBack }) => {
+export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onSuccess, onBack }) => {
   const [bcvRate, setBcvRate] = useState<number>(0);
   const [rateLoading, setRateLoading] = useState(true);
   const [copied, setCopied] = useState<string | null>(null);
-  const [reference, setReference] = useState('');
   const [capturePreview, setCapturePreview] = useState<string | null>(null);
+  const [captureFile, setCaptureFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -52,19 +53,27 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
   const handleCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setCaptureFile(file);
       const reader = new FileReader();
       reader.onloadend = () => setCapturePreview(reader.result as string);
       reader.readAsDataURL(file);
     }
   };
 
+  const sendWhatsApp = () => {
+    const msg = encodeURIComponent(
+      'Hola! Realicé un Pago Móvil para el curso "' + courseName + '" por $' + amountUSD + ' USD (Bs. ' + amountBs + '). Adjunto la captura del comprobante.'
+    );
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
+  };
+
   const handleSubmit = () => {
-    if (!reference || reference.length < 6) return;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 2000);
+      sendWhatsApp();
+    }, 1500);
   };
 
   if (submitted) {
@@ -73,9 +82,9 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
         <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
           <Check style={{ width: 32, height: 32, color: '#10b981' }} />
         </div>
-        <h3 style={{ fontSize: 18, fontWeight: 700, color: '#111827', marginBottom: 8 }}>Pago Recibido</h3>
-        <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 4 }}>Tu pago está siendo verificado.</p>
-        <p style={{ fontSize: 12, color: '#9ca3af', marginBottom: 20 }}>Recibirás acceso en menos de 24 horas.</p>
+        <h3 style={{ fontSize: 18, fontWeight: 700, color: '#111827', marginBottom: 8 }}>¡Listo!</h3>
+        <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 4 }}>Se abrió WhatsApp con tu comprobante.</p>
+        <p style={{ fontSize: 12, color: '#9ca3af', marginBottom: 20 }}>Enviando captura... Te confirmamos el acceso en menos de 24h.</p>
         <button onClick={onSuccess} style={{ borderRadius: 10, background: ORANGE, padding: '10px 20px', fontSize: 13, fontWeight: 700, color: 'white', border: 'none', cursor: 'pointer' }}>
           Entendido
         </button>
@@ -132,28 +141,19 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
         <InfoRow label="Monto en Bs." value={`Bs. ${amountBs}`} field="amount" />
       </div>
 
-      {/* Reference */}
-      <div style={{ marginBottom: 16 }}>
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Referencia de pago *</label>
-        <input
-          type="text"
-          placeholder="Últimos 6 dígitos de la referencia"
-          value={reference}
-          onChange={(e) => setReference(e.target.value.replace(/\D/g, '').slice(0, 6))}
-          style={{ width: '100%', borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', outline: 'none', fontFamily: 'monospace', letterSpacing: 2 }}
-        />
-      </div>
-
-      {/* Capture upload */}
+      {/* Capture upload - required */}
       <div style={{ marginBottom: 20 }}>
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Captura de pantalla (opcional)</label>
-        <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '20px', borderRadius: 10, border: '2px dashed #d1d5db', background: '#f9fafb', cursor: 'pointer', transition: 'border-color 0.2s' }}>
+        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Captura del comprobante *</label>
+        <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '24px', borderRadius: 10, border: capturePreview ? '2px solid #10b981' : '2px dashed #d1d5db', background: capturePreview ? '#f0fdf4' : '#f9fafb', cursor: 'pointer', transition: 'all 0.2s' }}>
           {capturePreview ? (
-            <img src={capturePreview} alt="Capture" style={{ width: '100%', maxHeight: 150, objectFit: 'contain', borderRadius: 8 }} />
+            <img src={capturePreview} alt="Capture" style={{ width: '100%', maxHeight: 180, objectFit: 'contain', borderRadius: 8 }} />
           ) : (
             <>
-              <Camera style={{ width: 20, height: 20, color: '#9ca3af' }} />
-              <span style={{ fontSize: 12, color: '#6b7280' }}>Subir captura del pago</span>
+              <Camera style={{ width: 24, height: 24, color: '#9ca3af' }} />
+              <div style={{ textAlign: 'center' }}>
+                <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 600, display: 'block' }}>Sube la captura del pago</span>
+                <span style={{ fontSize: 11, color: '#9ca3af' }}>Foto del comprobante de Pago Móvil</span>
+              </div>
             </>
           )}
           <input type="file" accept="image/*" onChange={handleCapture} style={{ display: 'none' }} />
@@ -163,25 +163,29 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
       {/* Submit */}
       <button
         onClick={handleSubmit}
-        disabled={reference.length < 6 || loading}
+        disabled={!captureFile || loading}
         style={{
           width: '100%',
           borderRadius: 10,
-          padding: '12px 16px',
+          padding: '14px 16px',
           fontSize: 13,
           fontWeight: 700,
-          background: reference.length >= 6 ? ORANGE : '#d1d5db',
+          background: captureFile ? ORANGE : '#d1d5db',
           color: 'white',
           border: 'none',
-          cursor: reference.length >= 6 ? 'pointer' : 'not-allowed',
+          cursor: captureFile ? 'pointer' : 'not-allowed',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
         }}
       >
-        {loading ? <><Loader2 style={{ width: 16, height: 16, animation: 'spin 1s linear infinite' }} /> Enviando...</> : 'Enviar Comprobante'}
+        {loading ? <><Loader2 style={{ width: 16, height: 16, animation: 'spin 1s linear infinite' }} /> Enviando...</> : 'Enviar Comprobante por WhatsApp'}
       </button>
+
+      <p style={{ fontSize: 10, color: '#9ca3af', textAlign: 'center', marginTop: 10 }}>
+        Se abrirá WhatsApp con tu comprobante pre-cargado
+      </p>
     </div>
   );
 };
