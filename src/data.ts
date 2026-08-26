@@ -462,69 +462,69 @@ export const INITIAL_COURSES: Course[] = [
       },
       {
         id: 'tg-m2',
-        title: 'Módulo 2: El motor detrás de la tienda (Apps Script y estructura web)',
+        title: 'Módulo 2: Programando con IA (Gemini al rescate y pruebas en vivo)',
         lessons: [
           {
             id: 'tg-2-1',
-            title: '¿Qué es Apps Script? Extensiones > Apps Script en tu Google Sheet',
-            duration: '9 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'tg-2-2',
-            title: 'El archivo .gs: Lógica interna que lee datos del Sheet y los envía a la web',
-            duration: '10 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'tg-2-3',
-            title: 'El archivo .html: Estructura y diseño de la tienda (CSS básico moderno)',
-            duration: '10 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'tg-2-t',
-            title: '📌 Tarea: Crea archivos .gs y .html en Apps Script',
-            duration: '15 min',
-            type: 'reading',
-            content: 'Abre Apps Script en tu hoja de cálculo, crea un archivo .gs y un archivo .html, y déjalos listos y guardados para la magia de la IA.'
-          }
-        ]
-      },
-      {
-        id: 'tg-m3',
-        title: 'Módulo 3: Programando con IA (Gemini al rescate y pruebas en vivo)',
-        lessons: [
-          {
-            id: 'tg-3-1',
             title: 'Cómo hablarle a Gemini: Prompts efectivos para generar código',
             duration: '10 min',
             type: 'video',
             content: 'https://www.w3schools.com/html/mov_bbb.mp4'
           },
           {
-            id: 'tg-3-2',
+            id: 'tg-2-2',
             title: 'Copiado y pegado estratégico: Dónde colocar el código en Apps Script',
             duration: '8 min',
             type: 'video',
             content: 'https://www.w3schools.com/html/mov_bbb.mp4'
           },
           {
-            id: 'tg-3-3',
+            id: 'tg-2-3',
             title: 'Prueba y Despliegue en vivo: Publicar la aplicación web y revisar resultados',
             duration: '10 min',
             type: 'video',
             content: 'https://www.w3schools.com/html/mov_bbb.mp4'
           },
           {
-            id: 'tg-3-t',
+            id: 'tg-2-t',
             title: '📌 Tarea: Genera código con Gemini, pégalo y despliega tu tienda',
             duration: '20 min',
             type: 'reading',
             content: 'Pídele a Gemini el código con la plantilla de prompt que te damos, pégalo en Apps Script, despliega la web y comparte el enlace de tu primera versión en nuestra comunidad.'
+          }
+        ]
+      },
+      {
+        id: 'tg-m3',
+        title: 'Módulo 3: El motor detrás de la tienda (Apps Script y estructura web)',
+        lessons: [
+          {
+            id: 'tg-3-1',
+            title: '¿Qué es Apps Script? Extensiones > Apps Script en tu Google Sheet',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-2',
+            title: 'El archivo .gs: Lógica interna que lee datos del Sheet y los envía a la web',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-3',
+            title: 'El archivo .html: Estructura y diseño de la tienda (CSS básico moderno)',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-t',
+            title: '📌 Tarea: Crea archivos .gs y .html en Apps Script',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Abre Apps Script en tu hoja de cálculo, crea un archivo .gs y un archivo .html, y déjalos listos y guardados para la magia de la IA.'
           }
         ]
       },
