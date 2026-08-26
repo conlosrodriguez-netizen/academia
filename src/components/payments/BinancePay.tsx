@@ -37,7 +37,7 @@ export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, o
     const msg = encodeURIComponent(
       'Hola! Realicé un pago de Binance Pay por $' + amountUSD + ' USDT para el curso "' + courseName + '". Adjunto la captura de la transacción.'
     );
-    window.open('https://wa.me/5804248804735?text=' + msg, '_blank');
+    window.open('https://wa.me/5804248804734?text=' + msg, '_blank');
   };
 
   const handleSubmit = () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Copy, Check, ArrowLeft, Building2, Camera, Loader2 } from 'lucide-react';
 
 const ORANGE = '#F59B20';
-const WHATSAPP = '5804248804735';
+const WHATSAPP = '5804248804734';
 
 interface PagoMovilProps {
   amountUSD: number;

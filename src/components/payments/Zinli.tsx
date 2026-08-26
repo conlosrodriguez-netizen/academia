@@ -37,7 +37,7 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
     const msg = encodeURIComponent(
       'Hola! Realicé un pago de Zinli por $' + amountUSD + ' para el curso "' + courseName + '". Adjunto la captura del pago.'
     );
-    window.open('https://wa.me/5804248804735?text=' + msg, '_blank');
+    window.open('https://wa.me/5804248804734?text=' + msg, '_blank');
   };
 
   const handleSubmit = () => {
