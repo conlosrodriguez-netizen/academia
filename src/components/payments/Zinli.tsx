@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, ArrowLeft, ExternalLink, Mail } from 'lucide-react';
 
-const ORANGE = '#F59B20';
-
 interface ZinliProps {
   amountUSD: number;
   courseName: string;
@@ -10,7 +8,7 @@ interface ZinliProps {
   onBack: () => void;
 }
 
-export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, onBack }) => {
+export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onBack }) => {
   const [copied, setCopied] = useState<string | null>(null);
 
   const email = 'solcar1992@gmail.com';

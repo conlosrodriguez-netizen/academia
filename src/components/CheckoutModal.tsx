@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Course } from '../data';
-import { X, CreditCard, Building2, Wallet } from 'lucide-react';
+import { X, Building2, Wallet } from 'lucide-react';
 import { PagoMovil } from './payments/PagoMovil';
 import { BinancePay } from './payments/BinancePay';
 import { Zinli } from './payments/Zinli';

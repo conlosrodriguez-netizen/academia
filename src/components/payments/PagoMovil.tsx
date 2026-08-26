@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, Upload, Loader2, ArrowLeft, Building2, Phone, CreditCard, Camera } from 'lucide-react';
+import { Copy, Check, ArrowLeft, Building2, Camera } from 'lucide-react';
 
 const ORANGE = '#F59B20';
-const BsToUsd = 36.5; // Fallback rate
+const BsToUsd = 36.5;
 
 interface PagoMovilProps {
   amountUSD: number;
@@ -11,11 +11,10 @@ interface PagoMovilProps {
   onBack: () => void;
 }
 
-export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onSuccess, onBack }) => {
+export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBack }) => {
   const [bcvRate, setBcvRate] = useState<number>(BsToUsd);
   const [copied, setCopied] = useState<string | null>(null);
   const [reference, setReference] = useState('');
-  const [capture, setCapture] = useState<File | null>(null);
   const [capturePreview, setCapturePreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -45,7 +44,6 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
   const handleCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setCapture(file);
       const reader = new FileReader();
       reader.onloadend = () => setCapturePreview(reader.result as string);
       reader.readAsDataURL(file);

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, ArrowLeft, ExternalLink } from 'lucide-react';
 
-const ORANGE = '#F59B20';
-
 interface BinancePayProps {
   amountUSD: number;
   courseName: string;
@@ -10,7 +8,7 @@ interface BinancePayProps {
   onBack: () => void;
 }
 
-export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, onSuccess, onBack }) => {
+export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, onBack }) => {
   const [copied, setCopied] = useState<string | null>(null);
 
   // Binance Pay USDT address (TRC20)
