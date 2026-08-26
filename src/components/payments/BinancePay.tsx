@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, ArrowLeft, ExternalLink, Camera, Loader2 } from 'lucide-react';
+import { Copy, Check, ArrowLeft, Camera, Loader2 } from 'lucide-react';
 
 interface BinancePayProps {
   amountUSD: number;
