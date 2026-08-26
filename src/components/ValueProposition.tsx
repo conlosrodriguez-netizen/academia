@@ -10,7 +10,7 @@ export const ValueProposition: React.FC = () => {
         {/* Badge */}
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', padding: '6px 14px', fontSize: 12, fontWeight: 700, color: '#047857', marginBottom: 20 }}>
           <Tag style={{ width: 14, height: 14 }} />
-          Los precios más accesibles del mercado
+          Los precios más asequibles del mercado
         </div>
 
         {/* H1 */}

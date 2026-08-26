@@ -11,7 +11,7 @@ export const HeroSection: React.FC = () => {
           {/* Badge */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, borderRadius: 999, background: 'rgba(16,185,129,0.2)', border: '1px solid rgba(16,185,129,0.4)', padding: '6px 16px', marginBottom: 20 }}>
             <Tag style={{ width: 14, height: 14, color: '#6ee7b7' }} />
-            <span style={{ fontSize: 12, fontWeight: 700, color: '#6ee7b7' }}>Los precios más accesibles del mercado</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#6ee7b7' }}>Los precios más asequibles del mercado</span>
           </div>
 
           {/* H1 */}
