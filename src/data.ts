@@ -402,12 +402,163 @@ export const INITIAL_COURSES: Course[] = [
             type: 'video',
             content: 'https://www.w3schools.com/html/mov_bbb.mp4'
           },
-          {
+           {
             id: 'ag-3-2',
             title: 'Automatización completa: Lead → CRM → Email → Seguimiento',
             duration: '30 min',
             type: 'video',
             content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tienda-gemini-sheets',
+    category: 'GOOGLE SHEETS & SCRIPT',
+    title: 'Crea tu Tienda Digital Gratis con Gemini y Google Sheets',
+    subtitle: 'Sin hosting, sin dominio, sin mensualidades',
+    description: 'Aprende a crear tu tienda en línea funcionando sin pagar hosting, dominio ni mensualidades. Usa Google Sheets como base de datos, Apps Script como motor y Gemini como tu programador personal.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+    masterclassCount: 12,
+    duration: '1.5 Horas',
+    price: 20,
+    isRecent: true,
+    prerequisites: [],
+    modules: [
+      {
+        id: 'tg-m1',
+        title: 'Módulo 1: La base de tu tienda (Diseño y estructura de datos)',
+        lessons: [
+          {
+            id: 'tg-1-1',
+            title: 'Bienvenida y Muestra Visual de tu tienda terminada',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-1-2',
+            title: 'El rol de Google Sheets como panel de control de inventario',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-1-3',
+            title: 'Estructura de la Tabla: Columnas clave (ID, Producto, Descripción, Precio, Imagen_URL, Disponible)',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-1-t',
+            title: '📌 Tarea: Crea tu hoja con al menos 3 productos reales',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Crea tu hoja en Google Sheets con las columnas indicadas y llena al menos 3 productos reales de tu negocio con sus datos básicos.'
+          }
+        ]
+      },
+      {
+        id: 'tg-m2',
+        title: 'Módulo 2: El motor detrás de la tienda (Apps Script y estructura web)',
+        lessons: [
+          {
+            id: 'tg-2-1',
+            title: '¿Qué es Apps Script? Extensiones > Apps Script en tu Google Sheet',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-2-2',
+            title: 'El archivo .gs: Lógica interna que lee datos del Sheet y los envía a la web',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-2-3',
+            title: 'El archivo .html: Estructura y diseño de la tienda (CSS básico moderno)',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-2-t',
+            title: '📌 Tarea: Crea archivos .gs y .html en Apps Script',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Abre Apps Script en tu hoja de cálculo, crea un archivo .gs y un archivo .html, y déjalos listos y guardados para la magia de la IA.'
+          }
+        ]
+      },
+      {
+        id: 'tg-m3',
+        title: 'Módulo 3: Programando con IA (Gemini al rescate y pruebas en vivo)',
+        lessons: [
+          {
+            id: 'tg-3-1',
+            title: 'Cómo hablarle a Gemini: Prompts efectivos para generar código',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-2',
+            title: 'Copiado y pegado estratégico: Dónde colocar el código en Apps Script',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-3',
+            title: 'Prueba y Despliegue en vivo: Publicar la aplicación web y revisar resultados',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-3-t',
+            title: '📌 Tarea: Genera código con Gemini, pégalo y despliega tu tienda',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Pídele a Gemini el código con la plantilla de prompt que te damos, pégalo en Apps Script, despliega la web y comparte el enlace de tu primera versión en nuestra comunidad.'
+          }
+        ]
+      },
+      {
+        id: 'tg-m4',
+        title: 'Módulo 4: Control total y gestión súper fácil (Precios, imágenes y edición)',
+        lessons: [
+          {
+            id: 'tg-4-1',
+            title: 'Actualización instantánea: Cambia precios y se reflejan automáticamente',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-4-2',
+            title: 'Gestión de imágenes: Enlaces directos gratuitos para tu tabla',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-4-3',
+            title: 'Mantenimiento: Ocultar productos agotados y mantener tu tienda impecable',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'tg-4-t',
+            title: '📌 Tarea Final: Publica tu tienda lista para recibir clientes',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Añade una imagen a uno de tus productos, cambia un precio en el Sheet, verifica el cambio en tu tienda en vivo y publica el link final de tu tienda lista para recibir clientes.'
           }
         ]
       }
