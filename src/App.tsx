@@ -49,6 +49,13 @@ export const App: React.FC = () => {
     return <AboutPage onBack={() => setView('home')} />;
   }
 
+  // Landing Tienda - accessible via /tienda-digital
+  React.useEffect(() => {
+    if (window.location.pathname === '/tienda-digital') {
+      setView('landing-tienda');
+    }
+  }, []);
+
   // Landing Tienda
   if (view === 'landing-tienda') {
     return <LandingTienda />;

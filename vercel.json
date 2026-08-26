@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/tienda-digital", "destination": "/index.html" }
+  ],
   "crons": [
     {
       "path": "/api/keep-alive",
