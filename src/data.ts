@@ -44,375 +44,13 @@ export interface Course {
 
 export const CATEGORIES = [
   'Todos',
-  'ARQUITECTURA IA',
   'GOOGLE SHEETS & SCRIPT',
-  'PROMPT ENGINEERING',
-  'AGENTES & AUTOMATIZACIÓN',
+  'ARQUITECTURA DE SOFTWARE',
 ] as const;
 
 export type Category = typeof CATEGORIES[number];
 
 export const INITIAL_COURSES: Course[] = [
-  {
-    id: 'arquitectura-ia',
-    category: 'ARQUITECTURA IA',
-    title: 'Arquitectura de Soluciones con Inteligencia Artificial',
-    subtitle: 'Diseña e implementa sistemas inteligentes escalables',
-    description: 'Aprende a diseñar, conectar y desplegar arquitecturas de software modernas potenciadas con LLMs, agentes autónomos y APIs de IA de alto rendimiento.',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800',
-    masterclassCount: 16,
-    duration: '14 Horas',
-    price: 67,
-    isRecent: true,
-    prerequisites: [],
-    modules: [
-      {
-        id: 'arq-m1',
-        title: 'Módulo 1: Fundamentos de Arquitectura con LLMs',
-        lessons: [
-          {
-            id: 'arq-1-1',
-            title: 'Anatomía de una aplicación moderna con IA',
-            duration: '12 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Qué componente es esencial al diseñar arquitectura RAG (Retrieval-Augmented Generation)?',
-              options: ['Una base de datos vectorial', 'Un disco duro mecánico', 'Un servidor FTP legacy', 'Una hoja de cálculo local'],
-              correctIndex: 0
-            }
-          },
-          {
-            id: 'arq-1-2',
-            title: 'Patrones de diseño para Agentes Autónomos',
-            duration: '15 min',
-            type: 'reading',
-            content: 'Los agentes autónomos combinan razonamiento (LLM), memoria a corto/largo plazo y herramientas externas (Tools/APIs) para ejecutar flujos de trabajo complejos sin intervención humana constante. Los patrones más comunes incluyen: ReAct (Reasoning + Acting), Chain-of-Thought y Tool-Use.'
-          },
-          {
-            id: 'arq-1-3',
-            title: 'Conceptos clave: Tokens, Context Window y Temperature',
-            duration: '10 min',
-            type: 'reading',
-            content: 'Los tokens son las unidades básicas de procesamiento en LLMs. El context window define cuánta información puede procesar una vez. La temperature controla la aleatoriedad: 0 = determinista, 1 = creativo.'
-          }
-        ]
-      },
-      {
-        id: 'arq-m2',
-        title: 'Módulo 2: Integración de APIs y Modelos',
-        lessons: [
-          {
-            id: 'arq-2-1',
-            title: 'Conectando OpenAI, Claude y Gemini APIs',
-            duration: '18 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Cuál es la diferencia principal entre la API de OpenAI y la de Claude?',
-              options: ['Claude no usa tokens', 'OpenAI no tiene límite de contexto', 'Claude tiene un enfoque más conversacional y mayor contexto', 'No hay diferencia'],
-              correctIndex: 2
-            }
-          },
-          {
-            id: 'arq-2-2',
-            title: 'Diseñando flujos con LangChain y LlamaIndex',
-            duration: '20 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      },
-      {
-        id: 'arq-m3',
-        title: 'Módulo 3: Despliegue y Escalamiento',
-        lessons: [
-          {
-            id: 'arq-3-1',
-            title: 'Desplegando soluciones de IA en la nube',
-            duration: '16 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'arq-3-2',
-            title: 'Monitoreo y optimización de costos en producción',
-            duration: '14 min',
-            type: 'reading',
-            content: 'Monitorear latencia, costos por token y tasas de error es crucial. Usa herramientas como LangSmith, Helicone o LiteLLM para tracking en tiempo real.'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'catalogos-sheets',
-    category: 'GOOGLE SHEETS & SCRIPT',
-    title: 'Catálogos Digitales con Google Sheets y Apps Script',
-    subtitle: 'Automatiza tu inventario y genera catálogos web profesionales',
-    description: 'Conecta Google Sheets con Apps Script e Inteligencia Artificial para crear catálogos digitales interactivos, actualizar precios automáticos y generar descripciones de productos con IA.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
-    masterclassCount: 6,
-    duration: '2 Horas',
-    price: 49,
-    isRecent: true,
-    prerequisites: [],
-    modules: [
-      {
-        id: 'cat-m1',
-        title: 'Módulo 1: Fundamentos de Google Sheets',
-        lessons: [
-          {
-            id: 'cat-1-1',
-            title: 'Configuración inicial y estructura de datos',
-            duration: '12 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'cat-1-2',
-            title: 'Fórmulas esenciales para catálogos',
-            duration: '15 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'cat-1-3',
-            title: 'Diseñando tu hoja de inventario profesional',
-            duration: '18 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      },
-      {
-        id: 'cat-m2',
-        title: 'Módulo 2: Automatización con Apps Script',
-        lessons: [
-          {
-            id: 'cat-2-1',
-            title: 'Introducción a Google Apps Script',
-            duration: '20 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'cat-2-2',
-            title: 'Creando triggers automáticos para actualizaciones',
-            duration: '16 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'cat-2-3',
-            title: 'Generando tu catálogo web desde Sheets',
-            duration: '22 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'prompt-engineering',
-    category: 'PROMPT ENGINEERING',
-    title: 'Prompt Engineering Avanzado',
-    subtitle: 'Domina la comunicación precisa con Modelos de Lenguaje',
-    description: 'Técnicas avanzadas de prompting (Few-Shot, Chain-of-Thought, ReAct, Tree-of-Thought) para construir prompts deterministas y robustos en aplicaciones de producción.',
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800',
-    masterclassCount: 14,
-    duration: '12 Horas',
-    price: 57,
-    isRecent: true,
-    prerequisites: [],
-    modules: [
-      {
-        id: 'pe-m1',
-        title: 'Módulo 1: Fundamentos del Prompting Efectivo',
-        lessons: [
-          {
-            id: 'pe-1-1',
-            title: 'Anatomía de un buen prompt: Rol, Contexto, Instrucción, Formato',
-            duration: '14 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Cuál es el componente MÁS importante de un prompt efectivo?',
-              options: ['El contexto claro y la instrucción específica', 'Usar mayúsculas', 'Escribir en inglés', 'Usar muchos adjetivos'],
-              correctIndex: 0
-            }
-          },
-          {
-            id: 'pe-1-2',
-            title: 'Zero-Shot vs Few-Shot Prompting',
-            duration: '12 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'pe-1-3',
-            title: 'Chain-of-Thought: Forzar el razonamiento paso a paso',
-            duration: '16 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      },
-      {
-        id: 'pe-m2',
-        title: 'Módulo 2: Técnicas Avanzadas',
-        lessons: [
-          {
-            id: 'pe-2-1',
-            title: 'Tree-of-Thought y prompting multi-perspectiva',
-            duration: '18 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Qué es Tree-of-Thought?',
-              options: ['Una técnica que explora múltiples líneas de razonamiento simultáneamente', 'Un árbol de decisiones en Python', 'Una librería de IA', 'Un método de compresión de datos'],
-              correctIndex: 0
-            }
-          },
-          {
-            id: 'pe-2-2',
-            title: 'Prompt Chaining: Encadenar múltiples llamadas',
-            duration: '15 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'pe-2-3',
-            title: 'ReAct: Razonar y Actuar en loops',
-            duration: '14 min',
-            type: 'reading',
-            content: 'ReAct (Reasoning + Acting) es un patrón donde el modelo alterna entre razonar sobre el problema y ejecutar acciones (como buscar en una base de datos o llamar a una API). Es la base de los agentes autónomos modernos.'
-          }
-        ]
-      },
-      {
-        id: 'pe-m3',
-        title: 'Módulo 3: Prompts para Producción',
-        lessons: [
-          {
-            id: 'pe-3-1',
-            title: 'Sistema de prompts para chatbots profesionales',
-            duration: '20 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'pe-3-2',
-            title: 'Testing y evaluación de prompts',
-            duration: '16 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'agentes-n8n',
-    category: 'AGENTES & AUTOMATIZACIÓN',
-    title: 'Agentes de IA y Workflows con n8n',
-    subtitle: 'Automatiza procesos empresariales sin código complejo',
-    description: 'Crea flujos de trabajo inteligentes conectando CRM, WhatsApp, Google Sheets y modelos de Inteligencia Artificial mediante n8n y herramientas no-code.',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=800',
-    masterclassCount: 18,
-    duration: '16 Horas',
-    price: 79,
-    isRecent: false,
-    prerequisites: ['catalogos-sheets'],
-    prerequisiteNames: ['Catálogos Digitales con Google Sheets y Apps Script'],
-    modules: [
-      {
-        id: 'ag-m1',
-        title: 'Módulo 1: Fundamentos de n8n',
-        lessons: [
-          {
-            id: 'ag-1-1',
-            title: 'Instalación y configuración de n8n (Self-hosted o Cloud)',
-            duration: '15 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'ag-1-2',
-            title: 'Nodos, Webhooks y Conexiones básicas',
-            duration: '18 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Qué es un Webhook en n8n?',
-              options: ['Un punto de entrada que recibe datos HTTP externos', 'Un tipo de base de datos', 'Un plugin de IA', 'Un formato de archivo'],
-              correctIndex: 0
-            }
-          },
-          {
-            id: 'ag-1-3',
-            title: 'Tu primer workflow: Guardar emails en Google Sheets',
-            duration: '20 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      },
-      {
-        id: 'ag-m2',
-        title: 'Módulo 2: Integrando Inteligencia Artificial',
-        lessons: [
-          {
-            id: 'ag-2-1',
-            title: 'Conectando OpenAI/Claude como nodo en n8n',
-            duration: '22 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-          {
-            id: 'ag-2-2',
-            title: 'Clasificación automática de emails con IA',
-            duration: '18 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4',
-            quiz: {
-              question: '¿Qué nodo de n8n se usa para conectar con la API de OpenAI?',
-              options: ['OpenAI Node', 'HTTP Request con API Key', 'AI Agent Node', 'Todas las anteriores son válidas'],
-              correctIndex: 3
-            }
-          },
-          {
-            id: 'ag-2-3',
-            title: 'Generación automática de contenido con IA',
-            duration: '16 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      },
-      {
-        id: 'ag-m3',
-        title: 'Módulo 3: Agentes Autónomos en n8n',
-        lessons: [
-          {
-            id: 'ag-3-1',
-            title: 'Creando un agente de atención al cliente con WhatsApp',
-            duration: '25 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          },
-           {
-            id: 'ag-3-2',
-            title: 'Automatización completa: Lead → CRM → Email → Seguimiento',
-            duration: '30 min',
-            type: 'video',
-            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
-          }
-        ]
-      }
-    ]
-  },
   {
     id: 'tienda-gemini-sheets',
     category: 'GOOGLE SHEETS & SCRIPT',
@@ -559,6 +197,293 @@ export const INITIAL_COURSES: Course[] = [
             duration: '20 min',
             type: 'reading',
             content: 'Añade una imagen a uno de tus productos, cambia un precio en el Sheet, verifica el cambio en tu tienda en vivo y publica el link final de tu tienda lista para recibir clientes.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'arquitecto-no-code',
+    category: 'ARQUITECTURA DE SOFTWARE',
+    title: 'Arquitecto de Software No-Code',
+    subtitle: 'Aprende a pensar como un ingeniero para diseñar sistemas a medida',
+    description: 'Al finalizar este programa de 8 módulos prácticos, sabrás cómo desglosar cualquier idea de negocio, seleccionar la combinación ideal de tecnologías y construir la arquitectura de un software completo a medida sin escribir código.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800',
+    masterclassCount: 32,
+    duration: '4 Horas',
+    price: 100,
+    isRecent: true,
+    prerequisites: [],
+    modules: [
+      {
+        id: 'arq-m1',
+        title: 'Módulo 1: La Mente del Arquitecto (Pensamiento Sistémico)',
+        lessons: [
+          {
+            id: 'arq-1-1',
+            title: 'Qué hace un Arquitecto de Software',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-1-2',
+            title: 'Desglose de Problemas: De requerimientos a diagramas de flujo',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-1-3',
+            title: 'Los 4 Pilares: Base de Datos, Backend, Frontend e Infraestructura',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-1-t',
+            title: '📌 Tarea: Mapea el flujo de usuarios de tu idea de sistema',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Mapea el flujo de usuarios y procesos de la idea de sistema que vas a construir a lo largo del curso.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m2',
+        title: 'Módulo 2: Modelado de Datos Avanzado (El Corazón de la Solución)',
+        lessons: [
+          {
+            id: 'arq-2-1',
+            title: 'Tablas, Relaciones y Llaves: Entidades y relaciones 1-a-1, 1-a-muchos',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-2-2',
+            title: 'Normalización Sencilla: Evitar duplicar datos y mantener limpio el sistema',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-2-3',
+            title: 'Seguridad desde la Base: Lógica de permisos básicos',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-2-t',
+            title: '📌 Tarea: Diseña el esquema completo de la base de datos',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Diseña en diagrama el esquema completo de la base de datos para tu proyecto.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m3',
+        title: 'Módulo 3: Elección del Motor de Datos e Infraestructura',
+        lessons: [
+          {
+            id: 'arq-3-1',
+            title: 'Criterios de Selección: Bases de datos visuales vs. relacionales en la nube',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-3-2',
+            title: 'Escalabilidad y Costos: Evaluar límites gratuitos y velocidad',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-3-3',
+            title: 'Configuración del Entorno de Datos: Creación y aislamiento de la BD',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-3-t',
+            title: '📌 Tarea: Levanta y configura la base de datos real de tu sistema',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Levanta y configura la base de datos real de tu sistema siguiendo la arquitectura definida en el Módulo 2.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m4',
+        title: 'Módulo 4: Lógica de Negocio y Flujos Automáticos (El Backend)',
+        lessons: [
+          {
+            id: 'arq-4-1',
+            title: 'Triggers y Acciones: Automatizaciones en tiempo real',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-4-2',
+            title: 'Integraciones mediante APIs y Webhooks sin programar',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-4-3',
+            title: 'Manejo de Errores: Garantizar que el sistema nunca se caiga',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-4-t',
+            title: '📌 Tarea: Crea el primer flujo automatizado con tu base de datos',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Crea el primer flujo automatizado que reciba información del usuario y actualice la base de datos en segundo plano.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m5',
+        title: 'Módulo 5: Arquitectura de la Interfaz (Diseño Visual y UX)',
+        lessons: [
+          {
+            id: 'arq-5-1',
+            title: 'Jerarquía Visual y Wireframes: Estructurar pantallas efectivas',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-5-2',
+            title: 'Consumo de Datos en Vivo: La interfaz le pide datos al backend',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-5-3',
+            title: 'Interfaces Adaptables (Responsive): Funciona en móvil y escritorio',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-5-t',
+            title: '📌 Tarea: Diseña wireframe de las 3 pantallas principales',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Diseña la estructura visual (wireframe) de las 3 pantallas principales de la solución.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m6',
+        title: 'Módulo 6: Ensamblaje Visual e Inteligencia Artificial',
+        lessons: [
+          {
+            id: 'arq-6-1',
+            title: 'Uso de Entornos de Generación Asistida por IA',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-6-2',
+            title: 'Conexión Frontend-Backend: Vincular componentes con endpoints',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-6-3',
+            title: 'Estructura de Estilos: Componentes globales profesionales',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-6-t',
+            title: '📌 Tarea: Conecta tu interfaz con la base de datos en vivo',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Conecta tu interfaz visual con la base de datos real para que empiece a mostrar información en vivo.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m7',
+        title: 'Módulo 7: Despliegue, Servidores y Publicación',
+        lessons: [
+          {
+            id: 'arq-7-1',
+            title: 'Entornos de Desarrollo vs. Producción',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-7-2',
+            title: 'Selección de Hosting: Dónde hospedar para máxima velocidad',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-7-3',
+            title: 'Dominios y SSL: Nombres de dominio y seguridad web',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-7-t',
+            title: '📌 Tarea: Despliega tu sistema y conecta un dominio de prueba',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Despliega tu sistema en la web, conecta un subdominio o dominio de prueba y verifica que la versión en vivo sea 100% funcional.'
+          }
+        ]
+      },
+      {
+        id: 'arq-m8',
+        title: 'Módulo 8: Auditoría de Seguridad, Optimización y Mantenimiento',
+        lessons: [
+          {
+            id: 'arq-8-1',
+            title: 'Pruebas de Estrés y Seguridad: Verificación de roles de usuario',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-8-2',
+            title: 'Optimización de Carga: Acelerar consultas e imágenes',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-8-3',
+            title: 'Entrega al Cliente: Documentar y entregar el sistema',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'arq-8-t',
+            title: '📌 Proyecto Final: Checklist de auditoría y enlace de producción',
+            duration: '30 min',
+            type: 'reading',
+            content: 'Realiza el checklist de auditoría de tu sistema terminado, comparte el enlace de producción en el grupo y obtén tu retroalimentación guiada.'
           }
         ]
       }
