@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Copy, Check, ArrowLeft, ExternalLink, Mail } from 'lucide-react';
 
 interface BinancePayProps {
   amountUSD: number;
@@ -11,9 +11,7 @@ interface BinancePayProps {
 export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, onBack }) => {
   const [copied, setCopied] = useState<string | null>(null);
 
-  // Binance Pay USDT address (TRC20)
-  const usdtAddress = 'TU_DIRECCION_BINANCE_USDT';
-  const network = 'TRC20';
+  const email = 'solcar1992@gmail.com';
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -45,29 +43,16 @@ export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, o
         <div style={{ fontSize: 12, color: '#b45309', marginTop: 4 }}>≈ {amountUSD} USDT</div>
       </div>
 
-      {/* QR Code placeholder */}
-      <div style={{ background: 'white', borderRadius: 12, padding: 20, marginBottom: 16, border: '1px solid #e5e7eb', textAlign: 'center' }}>
-        <div style={{ width: 160, height: 160, background: '#f3f4f6', borderRadius: 8, margin: '0 auto 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px dashed #d1d5db' }}>
-          <span style={{ fontSize: 12, color: '#9ca3af' }}>QR Code</span>
-        </div>
-        <p style={{ fontSize: 11, color: '#6b7280' }}>Escanea con tu app de Binance</p>
-      </div>
-
-      {/* Network info */}
-      <div style={{ background: '#fffbeb', borderRadius: 10, padding: '10px 14px', marginBottom: 16, border: '1px solid #fde68a', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 14 }}>⚠️</span>
-        <span style={{ fontSize: 11, color: '#92400e', fontWeight: 600 }}>Red: {network} (TRC20)</span>
-      </div>
-
-      {/* Address */}
-      <div style={{ marginBottom: 20 }}>
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Dirección USDT (TRC20)</label>
+      {/* Email */}
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Enviar a:</label>
         <div style={{ display: 'flex', gap: 8 }}>
-          <div style={{ flex: 1, borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 12, color: '#111827', fontFamily: 'monospace', wordBreak: 'break-all' }}>
-            {usdtAddress}
+          <div style={{ flex: 1, borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Mail style={{ width: 14, height: 14, color: '#6b7280', flexShrink: 0 }} />
+            {email}
           </div>
-          <button onClick={() => copyToClipboard(usdtAddress, 'address')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'address' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'address' ? '#10b981' : '#6b7280', flexShrink: 0 }}>
-            {copied === 'address' ? <Check style={{ width: 18, height: 18 }} /> : <Copy style={{ width: 18, height: 18 }} />}
+          <button onClick={() => copyToClipboard(email, 'email')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'email' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'email' ? '#10b981' : '#6b7280', flexShrink: 0 }}>
+            {copied === 'email' ? <Check style={{ width: 18, height: 18 }} /> : <Copy style={{ width: 18, height: 18 }} />}
           </button>
         </div>
       </div>
@@ -76,17 +61,17 @@ export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, o
       <div style={{ background: '#f9fafb', borderRadius: 12, padding: 16, marginBottom: 20, border: '1px solid #f3f4f6' }}>
         <h4 style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 10 }}>Pasos:</h4>
         <ol style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.8, paddingLeft: 16 }}>
-          <li>Abre tu app de Binance</li>
-          <li>Ve a <strong>Pago</strong> → <strong>Enviar</strong></li>
-          <li>Selecciona <strong>USDT</strong> y red <strong>TRC20</strong></li>
-          <li>Pega la dirección y envía <strong>{amountUSD} USDT</strong></li>
-          <li>Envía la referencia de la transacción por WhatsApp</li>
+          <li>Abre tu app de <strong>Binance</strong></li>
+          <li>Ve a <strong>Binance Pay</strong></li>
+          <li>Busca por email: <strong>{email}</strong></li>
+          <li>Envía <strong>${amountUSD} USDT</strong></li>
+          <li>Envía la captura por WhatsApp</li>
         </ol>
       </div>
 
       {/* WhatsApp link */}
       <a
-        href={`https://wa.me/5804248804735?text=${encodeURIComponent('Hola! Realicé un pago de Binance Pay por $' + amountUSD + ' USDT para el curso "' + courseName + '". Adjunto la referencia de la transacción.')}`}
+        href={`https://wa.me/5804248804735?text=${encodeURIComponent('Hola! Realicé un pago de Binance Pay por $' + amountUSD + ' USDT para el curso "' + courseName + '". Adjunto la captura.')}`}
         target="_blank"
         rel="noreferrer"
         style={{
