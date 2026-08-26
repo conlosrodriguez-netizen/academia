@@ -15,7 +15,7 @@ export const LandingTienda: React.FC = () => {
   const [copied, setCopied] = useState<string | null>(null);
 
   const courseName = 'Crea tu Tienda Digital Gratis con Gemini y Google Sheets';
-  const price = 20;
+  const price = 5;
   const bank = 'Banesco';
   const phone = '04248804734';
   const cedula = '21175955';
@@ -77,7 +77,7 @@ export const LandingTienda: React.FC = () => {
     <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
       {/* Urgency Banner */}
       <div style={{ background: 'linear-gradient(90deg, #dc2626, #ef4444)', color: 'white', textAlign: 'center', padding: '10px 16px', fontSize: 13, fontWeight: 700 }}>
-        🔥 OFERTA POR TIEMPO LIMITADO - Precio sube a $30 USD en 48 horas
+        🔥 PRECIO INTRODUCTORIO - De $20 a solo $5 USD por tiempo limitado
       </div>
 
       {/* Hero */}
@@ -97,10 +97,10 @@ export const LandingTienda: React.FC = () => {
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginBottom: 24 }}>
-            <div style={{ fontSize: 36, fontWeight: 900, color: '#fbbf24' }}>$20</div>
+            <div style={{ fontSize: 36, fontWeight: 900, color: '#fbbf24' }}>$5</div>
             <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', textDecoration: 'line-through' }}>$30 USD</div>
-              <div style={{ fontSize: 12, color: '#4ade80', fontWeight: 700 }}>Ahorras $10 USD</div>
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', textDecoration: 'line-through' }}>$20 USD</div>
+              <div style={{ fontSize: 12, color: '#4ade80', fontWeight: 700 }}>Ahorras $15 USD</div>
             </div>
           </div>
 
@@ -108,7 +108,7 @@ export const LandingTienda: React.FC = () => {
             onClick={() => setShowCheckout(true)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, borderRadius: 12, background: ORANGE, padding: '16px 32px', fontSize: 16, fontWeight: 800, color: 'white', border: 'none', cursor: 'pointer', boxShadow: '0 4px 20px rgba(245,155,32,0.4)' }}
           >
-            QUIERO MI TIENDA AHORA <ArrowRight style={{ width: 18, height: 18 }} />
+            QUIERO MI TIENDA AHORA - $5 <ArrowRight style={{ width: 18, height: 18 }} />
           </button>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, marginTop: 20, fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>
@@ -167,7 +167,7 @@ export const LandingTienda: React.FC = () => {
             onClick={() => setShowCheckout(true)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, borderRadius: 12, background: ORANGE, padding: '16px 32px', fontSize: 16, fontWeight: 800, color: 'white', border: 'none', cursor: 'pointer', boxShadow: '0 4px 20px rgba(245,155,32,0.4)' }}
           >
-            OBTENER ACCESO - $20 USD <ArrowRight style={{ width: 18, height: 18 }} />
+            OBTENER ACCESO - $5 USD <ArrowRight style={{ width: 18, height: 18 }} />
           </button>
         </div>
       </section>

@@ -61,7 +61,7 @@ export const INITIAL_COURSES: Course[] = [
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
     masterclassCount: 12,
     duration: '1.5 Horas',
-    price: 20,
+    price: 5,
     isRecent: true,
     prerequisites: [],
     modules: [
