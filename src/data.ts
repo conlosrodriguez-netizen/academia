@@ -46,6 +46,7 @@ export const CATEGORIES = [
   'Todos',
   'GOOGLE SHEETS & SCRIPT',
   'ARQUITECTURA DE SOFTWARE',
+  'EDICIÓN DE VIDEO',
 ] as const;
 
 export type Category = typeof CATEGORIES[number];
@@ -484,6 +485,123 @@ export const INITIAL_COURSES: Course[] = [
             duration: '30 min',
             type: 'reading',
             content: 'Realiza el checklist de auditoría de tu sistema terminado, comparte el enlace de producción en el grupo y obtén tu retroalimentación guiada.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'edicion-reels',
+    category: 'EDICIÓN DE VIDEO',
+    title: 'Edita tus Propios Reels para Redes Sociales',
+    subtitle: 'Sin pagar editores, desde tu teléfono o computadora',
+    description: 'En menos de 30 minutos aprenderás a crear reels dinámicos y profesionales desde tu teléfono o computadora, sin pagar a editores externos.',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800',
+    masterclassCount: 9,
+    duration: '45 Min',
+    price: 10,
+    isRecent: true,
+    prerequisites: [],
+    modules: [
+      {
+        id: 'reels-m1',
+        title: 'Módulo 1: El Ritmo y la Estructura (Plantillas, Música y Cortes)',
+        lessons: [
+          {
+            id: 'reels-1-1',
+            title: 'Ajuste del Lienzo: Formato 9:16 perfecto para Instagram y TikTok',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-1-2',
+            title: 'Uso de Plantillas Inteligentes: Crear contenido en segundos',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-1-3',
+            title: 'Edición al Ritmo de la Música: Cortes precisos para enganchar',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-1-t',
+            title: '📌 Tarea: Importa 3 videos, selecciona audio y exporta tu primer borrador',
+            duration: '10 min',
+            type: 'reading',
+            content: 'Importa 3 videos cortos de tu negocio, selecciona un audio en tendencia, haz los cortes al ritmo de la música y exporta tu primer borrador.'
+          }
+        ]
+      },
+      {
+        id: 'reels-m2',
+        title: 'Módulo 2: Dinamismo Visual (Keyframes, Transiciones y Efectos)',
+        lessons: [
+          {
+            id: 'reels-2-1',
+            title: 'Dominando los Keyframes: Zooms progresivos y animación de textos',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-2-2',
+            title: 'Transiciones Invisibles y Fluidez entre tomas',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-2-3',
+            title: 'Trucos de Edición Rápida: Rampas de velocidad cinematográfica',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-2-t',
+            title: '📌 Tarea: Aplica zoom animado con Keyframes y transición fluida',
+            duration: '10 min',
+            type: 'reading',
+            content: 'Aplica un zoom animado usando Keyframes en un punto clave de tu video y agrega una transición fluida entre dos tomas.'
+          }
+        ]
+      },
+      {
+        id: 'reels-m3',
+        title: 'Módulo 3: El Toque Final (Subtítulos, Textos y Trucos de Venta)',
+        lessons: [
+          {
+            id: 'reels-3-1',
+            title: 'Subtítulos Automáticos y Estilizados con un clic',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-3-2',
+            title: 'Jerarquía Visual de Textos: Hooks que la gente no tape',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-3-3',
+            title: 'Exportación en Máxima Calidad: Ajustes de resolución y FPS',
+            duration: '7 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'reels-3-t',
+            title: '📌 Proyecto Final: Subtítulos, CTA, exporta y publica etiquetando @ConLosRodriguez',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Genera los subtítulos de tu reel, agrega un texto de llamada a la acción, exporta en máxima calidad y publica tu video etiquetando a @ConLosRodriguez.'
           }
         ]
       }
