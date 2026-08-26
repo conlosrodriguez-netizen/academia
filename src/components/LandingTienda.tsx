@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, Play, MessageCircle, X, Loader2, Copy, Check, Building2 } from 'lucide-react';
+import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2 } from 'lucide-react';
 
 const ORANGE = '#F59B20';
 const WHATSAPP = '5804248804734';
@@ -19,7 +19,6 @@ export const LandingTienda: React.FC = () => {
   const bank = 'Banesco';
   const phone = '04248804734';
   const cedula = '21175955';
-  const paymentText = `Banco: ${bank}\nTeléfono: ${phone}\nCédula: ${cedula}\nMonto: Bs. 15750`;
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);

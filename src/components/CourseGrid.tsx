@@ -13,6 +13,7 @@ interface CourseGridProps {
 export const CourseGrid: React.FC<CourseGridProps> = ({
   courses,
   onViewDetail,
+  onViewLanding,
 }) => {
   const [activeCategory, setActiveCategory] = React.useState<string>('Todos');
 
