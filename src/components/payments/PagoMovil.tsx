@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Copy, Check, ArrowLeft, Building2, Camera, Loader2 } from 'lucide-react';
 
 const ORANGE = '#F59B20';
-const BsToUsd = 36.5;
 
 interface PagoMovilProps {
   amountUSD: number;
@@ -12,7 +11,8 @@ interface PagoMovilProps {
 }
 
 export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBack }) => {
-  const [bcvRate, setBcvRate] = useState<number>(BsToUsd);
+  const [bcvRate, setBcvRate] = useState<number>(0);
+  const [rateLoading, setRateLoading] = useState(true);
   const [copied, setCopied] = useState<string | null>(null);
   const [reference, setReference] = useState('');
   const [capturePreview, setCapturePreview] = useState<string | null>(null);
@@ -20,14 +20,22 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    fetch('https://dolar-bcv-api.vercel.app/api/dollar')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.rate) {
+    const fetchRate = async () => {
+      try {
+        const res = await fetch('https://dolar-bcv-api.vercel.app/api/dollar');
+        const data = await res.json();
+        if (data?.rate && data.rate > 100) {
           setBcvRate(data.rate);
+        } else {
+          setBcvRate(787.52);
         }
-      })
-      .catch(() => {});
+      } catch {
+        setBcvRate(787.52);
+      } finally {
+        setRateLoading(false);
+      }
+    };
+    fetchRate();
   }, []);
 
   const amountBs = (amountUSD * bcvRate).toFixed(2);
@@ -108,8 +116,12 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
       <div style={{ background: 'linear-gradient(135deg, #f0fdf4, #ecfdf5)', borderRadius: 12, padding: 16, marginBottom: 16, border: '1px solid #bbf7d0', textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: '#059669', fontWeight: 600, marginBottom: 4 }}>Monto a pagar</div>
         <div style={{ fontSize: 28, fontWeight: 800, color: '#047857' }}>${amountUSD} USD</div>
-        <div style={{ fontSize: 14, fontWeight: 700, color: '#059669', marginTop: 4 }}>Bs. {amountBs}</div>
-        <div style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>BCV: {bcvRate.toFixed(2)} Bs/USD</div>
+        <div style={{ fontSize: 14, fontWeight: 700, color: '#059669', marginTop: 4 }}>
+          {rateLoading ? 'Cargando tasa BCV...' : `Bs. ${amountBs}`}
+        </div>
+        <div style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>
+          {rateLoading ? <Loader2 style={{ width: 12, height: 12, display: 'inline', animation: 'spin 1s linear infinite' }} /> : `BCV: ${bcvRate.toFixed(2)} Bs/USD`}
+        </div>
       </div>
 
       {/* Bank details */}
