@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Copy, Check, ArrowLeft, Mail, Camera, Loader2 } from 'lucide-react';
+import { Copy, Check, ArrowLeft, Mail, Loader2 } from 'lucide-react';
+
+const WHATSAPP = '5804248804734';
 
 interface ZinliProps {
   amountUSD: number;
@@ -10,12 +12,13 @@ interface ZinliProps {
 
 export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, onBack }) => {
   const [copied, setCopied] = useState<string | null>(null);
-  const [capturePreview, setCapturePreview] = useState<string | null>(null);
-  const [captureFile, setCaptureFile] = useState<File | null>(null);
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const email = 'solcar1992@gmail.com';
+  const walletEmail = 'solcar1992@gmail.com';
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -23,30 +26,27 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
     setTimeout(() => setCopied(null), 2000);
   };
 
-  const handleCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setCaptureFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setCapturePreview(reader.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
-
   const sendWhatsApp = () => {
     const msg = encodeURIComponent(
-      'Hola! Realicé un pago de Zinli por $' + amountUSD + ' para el curso "' + courseName + '". Adjunto la captura del pago.'
+      '✅ Hola, ya pagué!\n\n' +
+      '👤 Nombre: ' + nombre + ' ' + apellido + '\n' +
+      '📧 Email: ' + email + '\n' +
+      '📚 Curso: ' + courseName + '\n' +
+      '💰 Monto: $' + amountUSD + ' USD\n' +
+      '💜 Método: Zinli\n' +
+      '📩 Enviado a: ' + walletEmail
     );
-    window.open('https://wa.me/5804248804734?text=' + msg, '_blank');
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
   };
 
   const handleSubmit = () => {
+    if (!nombre || !apellido || !email) return;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
       sendWhatsApp();
-    }, 1500);
+    }, 1000);
   };
 
   if (submitted) {
@@ -56,14 +56,14 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
           <Check style={{ width: 32, height: 32, color: '#10b981' }} />
         </div>
         <h3 style={{ fontSize: 18, fontWeight: 700, color: '#111827', marginBottom: 8 }}>¡Listo!</h3>
-        <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 4 }}>Se abrió WhatsApp con tu comprobante.</p>
+        <p style={{ fontSize: 13, color: '#6b7280', marginBottom: 4 }}>Se abrió WhatsApp con tu confirmación.</p>
         <p style={{ fontSize: 12, color: '#9ca3af', marginBottom: 20 }}>Te confirmamos el acceso en menos de 24h.</p>
-        <button onClick={onSuccess} style={{ borderRadius: 10, background: '#8b5cf6', padding: '10px 20px', fontSize: 13, fontWeight: 700, color: 'white', border: 'none', cursor: 'pointer' }}>
-          Entendido
-        </button>
+        <button onClick={onSuccess} style={{ borderRadius: 10, background: '#8b5cf6', padding: '10px 20px', fontSize: 13, fontWeight: 700, color: 'white', border: 'none', cursor: 'pointer' }}>Entendido</button>
       </div>
     );
   }
+
+  const inputStyle: React.CSSProperties = { width: '100%', borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', outline: 'none' };
 
   return (
     <div>
@@ -71,7 +71,6 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
         <ArrowLeft style={{ width: 14, height: 14 }} /> Volver
       </button>
 
-      {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
         <div style={{ width: 40, height: 40, borderRadius: 10, background: '#ede9fe', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <span style={{ fontSize: 20 }}>💜</span>
@@ -88,15 +87,14 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
         <div style={{ fontSize: 28, fontWeight: 800, color: '#5b21b6' }}>${amountUSD} USD</div>
       </div>
 
-      {/* Email */}
+      {/* Wallet */}
       <div style={{ marginBottom: 16 }}>
         <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Enviar a:</label>
         <div style={{ display: 'flex', gap: 8 }}>
           <div style={{ flex: 1, borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Mail style={{ width: 14, height: 14, color: '#6b7280', flexShrink: 0 }} />
-            {email}
+            <Mail style={{ width: 14, height: 14, color: '#6b7280', flexShrink: 0 }} /> {walletEmail}
           </div>
-          <button onClick={() => copyToClipboard(email, 'email')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'email' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'email' ? '#10b981' : '#6b7280', flexShrink: 0 }}>
+          <button onClick={() => copyToClipboard(walletEmail, 'email')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'email' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'email' ? '#10b981' : '#6b7280', flexShrink: 0 }}>
             {copied === 'email' ? <Check style={{ width: 18, height: 18 }} /> : <Copy style={{ width: 18, height: 18 }} />}
           </button>
         </div>
@@ -104,61 +102,43 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
 
       {/* Steps */}
       <div style={{ background: '#f9fafb', borderRadius: 12, padding: 16, marginBottom: 16, border: '1px solid #f3f4f6' }}>
-        <h4 style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 10 }}>Pasos:</h4>
         <ol style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.8, paddingLeft: 16 }}>
-          <li>Abre tu app de <strong>Zinli</strong></li>
-          <li>Ve a <strong>Enviar</strong></li>
-          <li>Busca por email: <strong>{email}</strong></li>
+          <li>Abre <strong>Zinli</strong> → <strong>Enviar</strong></li>
+          <li>Busca: <strong>{walletEmail}</strong></li>
           <li>Envía <strong>${amountUSD} USD</strong></li>
-          <li>Sube la captura y envía</li>
         </ol>
       </div>
 
-      {/* Capture upload */}
+      {/* User data form */}
       <div style={{ marginBottom: 20 }}>
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Captura del comprobante *</label>
-        <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '24px', borderRadius: 10, border: capturePreview ? '2px solid #10b981' : '2px dashed #d1d5db', background: capturePreview ? '#f0fdf4' : '#f9fafb', cursor: 'pointer', transition: 'all 0.2s' }}>
-          {capturePreview ? (
-            <img src={capturePreview} alt="Capture" style={{ width: '100%', maxHeight: 180, objectFit: 'contain', borderRadius: 8 }} />
-          ) : (
-            <>
-              <Camera style={{ width: 24, height: 24, color: '#9ca3af' }} />
-              <div style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 600, display: 'block' }}>Sube la captura del pago</span>
-                <span style={{ fontSize: 11, color: '#9ca3af' }}>Foto de la transacción en Zinli</span>
-              </div>
-            </>
-          )}
-          <input type="file" accept="image/*" onChange={handleCapture} style={{ display: 'none' }} />
-        </label>
+        <h4 style={{ fontSize: 13, fontWeight: 700, color: '#374151', marginBottom: 12 }}>Tus datos para crear tu cuenta:</h4>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Nombre *</label>
+              <input type="text" placeholder="Tu nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} style={inputStyle} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Apellido *</label>
+              <input type="text" placeholder="Tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} style={inputStyle} />
+            </div>
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Correo electrónico *</label>
+            <input type="email" placeholder="tu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} />
+            <p style={{ fontSize: 10, color: '#9ca3af', marginTop: 4 }}>Aquí recibirás tu usuario y contraseña</p>
+          </div>
+        </div>
       </div>
 
-      {/* Submit */}
       <button
         onClick={handleSubmit}
-        disabled={!captureFile || loading}
-        style={{
-          width: '100%',
-          borderRadius: 10,
-          padding: '14px 16px',
-          fontSize: 13,
-          fontWeight: 700,
-          background: captureFile ? '#8b5cf6' : '#d1d5db',
-          color: 'white',
-          border: 'none',
-          cursor: captureFile ? 'pointer' : 'not-allowed',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 8,
-        }}
+        disabled={!nombre || !apellido || !email || loading}
+        style={{ width: '100%', borderRadius: 10, padding: '14px 16px', fontSize: 13, fontWeight: 700, background: nombre && apellido && email ? '#8b5cf6' : '#d1d5db', color: 'white', border: 'none', cursor: nombre && apellido && email ? 'pointer' : 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
       >
-        {loading ? <><Loader2 style={{ width: 16, height: 16, animation: 'spin 1s linear infinite' }} /> Enviando...</> : 'Enviar Comprobante por WhatsApp'}
+        {loading ? <><Loader2 style={{ width: 16, height: 16, animation: 'spin 1s linear infinite' }} /> Enviando...</> : '✅ Confirmar Pago por WhatsApp'}
       </button>
-
-      <p style={{ fontSize: 10, color: '#9ca3af', textAlign: 'center', marginTop: 10 }}>
-        Se abrirá WhatsApp con tu comprobante pre-cargado
-      </p>
+      <p style={{ fontSize: 10, color: '#9ca3af', textAlign: 'center', marginTop: 10 }}>Se abrirá WhatsApp con todos tus datos</p>
     </div>
   );
 };
