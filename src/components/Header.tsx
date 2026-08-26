@@ -17,97 +17,81 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, onLogin, onLogout, 
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <>
-      <header style={{ position: 'sticky', top: 0, zIndex: 50, background: ORANGE, boxShadow: '0 2px 8px rgba(245,155,32,0.3)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
-          {/* Logo */}
-          <button onClick={onHome} style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', padding: 0, flexShrink: 0 }}>
-            <img src="./logo-header.png" alt="CONLOSRODRIGUEZ" style={{ height: 40, width: 'auto', objectFit: 'contain' }} />
-          </button>
+    <header style={{ position: 'sticky', top: 0, zIndex: 50, background: ORANGE, boxShadow: '0 2px 8px rgba(245,155,32,0.3)' }}>
+      {/* Main bar */}
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60 }}>
+        {/* Logo */}
+        <button onClick={onHome} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0 }}>
+          <img src="./logo-header.png" alt="CONLOSRODRIGUEZ" style={{ height: 44, maxWidth: 180, objectFit: 'contain' }} />
+        </button>
 
-          {/* Desktop right side */}
-          <div className="header-desktop" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            {currentUser ? (
-              <>
-                {currentUser.role === 'admin' && (
-                  <button onClick={onAdminPanel} style={{ display: 'flex', alignItems: 'center', gap: 6, borderRadius: 10, border: '2px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.15)', padding: '8px 14px', fontSize: 12, fontWeight: 600, color: 'white', cursor: 'pointer' }}>
-                    <PlusCircle style={{ width: 16, height: 16 }} /> Crear Curso
-                  </button>
-                )}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, borderRadius: 10, border: '2px solid rgba(255,255,255,0.3)', padding: '6px 12px', background: 'rgba(255,255,255,0.15)' }}>
-                  <div style={{ width: 30, height: 30, borderRadius: 8, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: ORANGE, fontWeight: 700, fontSize: 12 }}>
-                    {currentUser.name.charAt(0).toUpperCase()}
-                  </div>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: 'white' }}>{currentUser.name}</span>
-                </div>
-                <button onClick={onLogout} style={{ padding: 8, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', borderRadius: 8, cursor: 'pointer' }}>
-                  <LogOut style={{ width: 16, height: 16 }} />
+        {/* Desktop buttons */}
+        <div className="hidden-mobile" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {currentUser ? (
+            <>
+              {currentUser.role === 'admin' && (
+                <button onClick={onAdminPanel} style={{ display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.15)', padding: '8px 12px', fontSize: 11, fontWeight: 600, color: 'white', cursor: 'pointer' }}>
+                  <PlusCircle style={{ width: 14, height: 14 }} /> Crear Curso
                 </button>
-              </>
-            ) : (
-              <>
-                <button onClick={onAbout} style={{ borderRadius: 10, background: 'rgba(255,255,255,0.15)', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: 'white', border: 'none', cursor: 'pointer' }}>
-                  Conócenos
-                </button>
-                <button onClick={onLogin} style={{ display: 'flex', alignItems: 'center', gap: 6, borderRadius: 10, background: 'white', padding: '10px 20px', fontSize: 12, fontWeight: 700, color: ORANGE, border: 'none', cursor: 'pointer' }}>
-                  <UserIcon style={{ width: 16, height: 16 }} /> Iniciar Sesión
-                </button>
-              </>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="header-mobile-btn" style={{ display: 'none', padding: 8, background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', borderRadius: 8, cursor: 'pointer' }}>
-            {menuOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
-          </button>
+              )}
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'white' }}>{currentUser.name}</span>
+              <button onClick={onLogout} style={{ padding: 6, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', borderRadius: 6, cursor: 'pointer' }}>
+                <LogOut style={{ width: 16, height: 16 }} />
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={onAbout} style={{ borderRadius: 8, background: 'rgba(255,255,255,0.15)', padding: '8px 14px', fontSize: 12, fontWeight: 600, color: 'white', border: 'none', cursor: 'pointer' }}>
+                Conócenos
+              </button>
+              <button onClick={onLogin} style={{ display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8, background: 'white', padding: '8px 16px', fontSize: 12, fontWeight: 700, color: ORANGE, border: 'none', cursor: 'pointer' }}>
+                <UserIcon style={{ width: 14, height: 14 }} /> Iniciar Sesión
+              </button>
+            </>
+          )}
         </div>
-      </header>
 
-      {/* Mobile menu overlay */}
+        {/* Mobile hamburger */}
+        <button className="show-mobile" onClick={() => setMenuOpen(!menuOpen)} style={{ display: 'none', padding: 8, background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', borderRadius: 8, cursor: 'pointer' }}>
+          {menuOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
       {menuOpen && (
-        <div className="header-mobile-menu" style={{ display: 'none', position: 'fixed', top: 64, left: 0, right: 0, bottom: 0, zIndex: 49, background: 'rgba(0,0,0,0.5)' }} onClick={() => setMenuOpen(false)}>
-          <div style={{ background: ORANGE, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }} onClick={(e) => e.stopPropagation()}>
-            {currentUser ? (
-              <>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: ORANGE, fontWeight: 700, fontSize: 14 }}>
-                    {currentUser.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: 'white' }}>{currentUser.name}</div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', textTransform: 'capitalize' }}>{currentUser.role}</div>
-                  </div>
-                </div>
-                {currentUser.role === 'admin' && (
-                  <button onClick={() => { onAdminPanel(); setMenuOpen(false); }} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, borderRadius: 10, background: 'rgba(255,255,255,0.15)', padding: '12px 16px', fontSize: 13, fontWeight: 600, color: 'white', border: 'none', cursor: 'pointer' }}>
-                    <PlusCircle style={{ width: 16, height: 16 }} /> Crear Curso
-                  </button>
-                )}
-                <button onClick={() => { onLogout(); setMenuOpen(false); }} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, borderRadius: 10, background: 'rgba(255,255,255,0.15)', padding: '12px 16px', fontSize: 13, fontWeight: 600, color: 'white', border: 'none', cursor: 'pointer' }}>
-                  <LogOut style={{ width: 16, height: 16 }} /> Cerrar Sesión
+        <div className="show-mobile" style={{ display: 'none', borderTop: '1px solid rgba(255,255,255,0.2)', padding: '12px 16px', background: 'rgba(0,0,0,0.1)' }}>
+          {currentUser ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span style={{ fontSize: 14, fontWeight: 700, color: 'white', padding: '4px 0' }}>{currentUser.name}</span>
+              {currentUser.role === 'admin' && (
+                <button onClick={() => { onAdminPanel(); setMenuOpen(false); }} style={{ width: '100%', padding: '12px', borderRadius: 8, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', fontSize: 13, fontWeight: 600, cursor: 'pointer', textAlign: 'left' }}>
+                  Crear Curso
                 </button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => { onAbout?.(); setMenuOpen(false); }} style={{ width: '100%', padding: '14px 16px', fontSize: 14, fontWeight: 600, color: 'white', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 10, cursor: 'pointer' }}>
-                  Conócenos
-                </button>
-                <button onClick={() => { onLogin(); setMenuOpen(false); }} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, borderRadius: 10, background: 'white', padding: '14px 16px', fontSize: 14, fontWeight: 700, color: ORANGE, border: 'none', cursor: 'pointer' }}>
-                  <UserIcon style={{ width: 18, height: 18 }} /> Iniciar Sesión
-                </button>
-              </>
-            )}
-          </div>
+              )}
+              <button onClick={() => { onLogout(); setMenuOpen(false); }} style={{ width: '100%', padding: '12px', borderRadius: 8, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', fontSize: 13, fontWeight: 600, cursor: 'pointer', textAlign: 'left' }}>
+                Cerrar Sesión
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <button onClick={() => { onAbout?.(); setMenuOpen(false); }} style={{ width: '100%', padding: '12px', borderRadius: 8, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', fontSize: 13, fontWeight: 600, cursor: 'pointer', textAlign: 'left' }}>
+                Conócenos
+              </button>
+              <button onClick={() => { onLogin(); setMenuOpen(false); }} style={{ width: '100%', padding: '12px', borderRadius: 8, background: 'white', border: 'none', color: ORANGE, fontSize: 13, fontWeight: 700, cursor: 'pointer', textAlign: 'center' }}>
+                Iniciar Sesión
+              </button>
+            </div>
+          )}
         </div>
       )}
 
+      {/* CSS for responsive */}
       <style>{`
-        @media (max-width: 768px) {
-          .header-desktop { display: none !important; }
-          .header-mobile-btn { display: flex !important; }
-          .header-mobile-menu { display: block !important; }
+        @media (max-width: 640px) {
+          .hidden-mobile { display: none !important; }
+          .show-mobile { display: block !important; }
         }
       `}</style>
-    </>
+    </header>
   );
 };
