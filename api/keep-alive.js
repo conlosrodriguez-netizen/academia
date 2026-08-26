@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
-  const supabaseUrl = process.env.VITE_SUPABASE_URL;
-  const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+  const supabaseUrl = 'https://zguwvsfzidurynylvyyi.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ6Z3V3c3ZmemlkdXJueW9sdnlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NjQ1NDAsImV4cCI6MjEwMzM0MDU0MH0.cThks-DAfHidjy7_kIHLo2eCWsqxWk__N2JI94LTYEc';
 
   try {
     const response = await fetch(`${supabaseUrl}/rest/v1/`, {

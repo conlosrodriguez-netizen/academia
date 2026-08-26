@@ -28,13 +28,17 @@ export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, o
 
   const sendWhatsApp = () => {
     const msg = encodeURIComponent(
-      '✅ Hola, ya pagué!\n\n' +
-      '👤 Nombre: ' + nombre + ' ' + apellido + '\n' +
-      '📧 Email: ' + email + '\n' +
-      '📚 Curso: ' + courseName + '\n' +
-      '💰 Monto: $' + amountUSD + ' USD (' + amountUSD + ' USDT)\n' +
-      '🪙 Método: Binance Pay\n' +
-      '📩 Enviado a: ' + walletEmail
+      'Confirmación de pago - CONLOSRODRIGUEZ\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+      'Hola, acabo de realizar el pago de mi curso.\n\n' +
+      '• Curso: ' + courseName + '\n' +
+      '• Monto: $' + amountUSD + ' USD (' + amountUSD + ' USDT)\n' +
+      '• Método: Binance Pay\n' +
+      '• Enviado a: ' + walletEmail + '\n\n' +
+      'Mis datos:\n' +
+      '• Nombre: ' + nombre + ' ' + apellido + '\n' +
+      '• Email: ' + email + '\n\n' +
+      'Quedo atento(a). ¡Gracias!'
     );
     window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
   };

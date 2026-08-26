@@ -53,15 +53,19 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
 
   const sendWhatsApp = () => {
     const msg = encodeURIComponent(
-      '✅ Hola, ya pagué!\n\n' +
-      '👤 Nombre: ' + nombre + ' ' + apellido + '\n' +
-      '📧 Email: ' + email + '\n' +
-      '📚 Curso: ' + courseName + '\n' +
-      '💰 Monto: $' + amountUSD + ' USD (Bs. ' + amountBs + ')\n' +
-      '🏦 Método: Pago Móvil\n' +
-      '🏛️ Banco: ' + bank + '\n' +
-      '📱 Teléfono: ' + phone + '\n' +
-      '🪪 Cédula: ' + cedula
+      'Confirmación de pago - CONLOSRODRIGUEZ\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+      'Hola, acabo de realizar el pago de mi curso.\n\n' +
+      '• Curso: ' + courseName + '\n' +
+      '• Monto: $' + amountUSD + ' USD (Bs. ' + amountBs + ')\n' +
+      '• Método: Pago Móvil\n' +
+      '• Banco: ' + bank + '\n' +
+      '• Teléfono: ' + phone + '\n' +
+      '• Cédula: ' + cedula + '\n\n' +
+      'Mis datos:\n' +
+      '• Nombre: ' + nombre + ' ' + apellido + '\n' +
+      '• Email: ' + email + '\n\n' +
+      'Quedo atento(a). ¡Gracias!'
     );
     window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
   };
