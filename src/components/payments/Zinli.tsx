@@ -72,7 +72,7 @@ export const Zinli: React.FC<ZinliProps> = ({ amountUSD, courseName, onSuccess, 
 
       {/* WhatsApp link */}
       <a
-        href={`https://wa.me/5804248804735?text=${encodeURIComponent(`Hola! Realicé un pago de Zinli por $${amountUSD} para el curso "${courseName}". Adjunto la captura del pago.')}`}
+        href={`https://wa.me/5804248804735?text=${encodeURIComponent('Hola! Realicé un pago de Zinli por $' + amountUSD + ' para el curso "' + courseName + '". Adjunto la captura del pago.')}`}
         target="_blank"
         rel="noreferrer"
         style={{

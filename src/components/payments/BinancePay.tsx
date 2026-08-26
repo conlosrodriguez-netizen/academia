@@ -88,7 +88,7 @@ export const BinancePay: React.FC<BinancePayProps> = ({ amountUSD, courseName, o
 
       {/* WhatsApp link */}
       <a
-        href={`https://wa.me/5804248804735?text=${encodeURIComponent(`Hola! Realicé un pago de Binance Pay por $${amountUSD} USDT para el curso "${courseName}". Adjunto la referencia de la transacción.')}`}
+        href={`https://wa.me/5804248804735?text=${encodeURIComponent('Hola! Realicé un pago de Binance Pay por $' + amountUSD + ' USDT para el curso "' + courseName + '". Adjunto la referencia de la transacción.')}`}
         target="_blank"
         rel="noreferrer"
         style={{
