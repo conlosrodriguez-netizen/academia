@@ -151,7 +151,7 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
                   <div key={mod.id} style={{ borderRadius: 12, border: '1px solid #f3f4f6', overflow: 'hidden' }}>
                     <div style={{ padding: '12px 16px', background: '#f9fafb', borderBottom: '1px solid #f3f4f6' }}>
                       <span style={{ fontSize: 13, fontWeight: 700, color: '#374151' }}>
-                        Módulo {modIdx + 1}: {mod.title}
+                        {mod.title}
                       </span>
                     </div>
                     <div style={{ padding: '8px 16px' }}>
