@@ -20,11 +20,11 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, onSuccess, onBa
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    fetch('https://pydolarve.org/api/v1/dollar')
+    fetch('https://dolar-bcv-api.vercel.app/api/dollar')
       .then(res => res.json())
       .then(data => {
-        if (data?.rates?.promedio?.price) {
-          setBcvRate(data.rates.promedio.price);
+        if (data?.rate) {
+          setBcvRate(data.rate);
         }
       })
       .catch(() => {});
