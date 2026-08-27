@@ -47,6 +47,7 @@ export const CATEGORIES = [
   'GOOGLE SHEETS & SCRIPT',
   'ARQUITECTURA DE SOFTWARE',
   'EDICIÓN DE VIDEO',
+  'DASHBOARDS & REPORTES',
 ] as const;
 
 export type Category = typeof CATEGORIES[number];
@@ -602,6 +603,274 @@ export const INITIAL_COURSES: Course[] = [
             duration: '15 min',
             type: 'reading',
             content: 'Genera los subtítulos de tu reel, agrega un texto de llamada a la acción, exporta en máxima calidad y publica tu video etiquetando a @ConLosRodriguez.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'dashboards-sheets',
+    category: 'DASHBOARDS & REPORTES',
+    title: 'Dashboards Interactivos con Google Sheets',
+    subtitle: 'Reportes automáticos y visualización de datos en tiempo real',
+    description: 'Aprende a crear dashboards profesionales que se actualizan automáticamente con tus datos. Gráficos dinámicos, fórmulas avanzadas y reportes listos para presentar a clientes o equipos.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    masterclassCount: 10,
+    duration: '1.5 Horas',
+    price: 15,
+    isRecent: true,
+    prerequisites: [],
+    modules: [
+      {
+        id: 'dash-m1',
+        title: 'Módulo 1: Fundamentos de Visualización de Datos',
+        lessons: [
+          {
+            id: 'dash-1-1',
+            title: 'Principios de diseño de dashboards efectivos',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-1-2',
+            title: 'Tipos de gráficos y cuándo usar cada uno',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-1-3',
+            title: 'Estructura de datos limpia para dashboards',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-1-t',
+            title: '📌 Tarea: Diseña la estructura de tu primer dashboard',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Define qué métricas necesitas visualizar y crea la estructura base de tu hoja de cálculo.'
+          }
+        ]
+      },
+      {
+        id: 'dash-m2',
+        title: 'Módulo 2: Fórmulas Avanzadas para Reportes',
+        lessons: [
+          {
+            id: 'dash-2-1',
+            title: 'SUMAR.SI, CONTAR.SI y BUSCARV para reportes automáticos',
+            duration: '12 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-2-2',
+            title: 'Tablas dinámicas que se actualizan solas',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-2-3',
+            title: 'Fechas, rangos y filtros automáticos',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-2-t',
+            title: '📌 Tarea: Crea un reporte de ventas con fórmulas automáticas',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Usa SUMAR.SI y BUSCARV para generar un reporte que se actualice cuando agregues nuevos datos.'
+          }
+        ]
+      },
+      {
+        id: 'dash-m3',
+        title: 'Módulo 3: Gráficos Profesionales y Dashboard Final',
+        lessons: [
+          {
+            id: 'dash-3-1',
+            title: 'Creación de gráficos personalizados en Sheets',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-3-2',
+            title: 'Diseño de tablero con controles y filtros',
+            duration: '12 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-3-3',
+            title: 'Exportación y compartición de reportes',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'dash-3-t',
+            title: '📌 Proyecto Final: Dashboard completo con gráficos y datos en vivo',
+            duration: '25 min',
+            type: 'reading',
+            content: 'Construye un dashboard completo con al menos 4 gráficos, filtros automáticos y comparte el enlace con tu equipo o cliente.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'portal-edicion',
+    category: 'GOOGLE SHEETS & SCRIPT',
+    title: 'Portal de Edición Colaborativa',
+    subtitle: 'Edita Excel con tu equipo sin conflictos ni caos',
+    description: 'Crea un portal web donde múltiples personas puedan editar datos de un mismo archivo sin pisarse. Ideal para equipos que manejan inventarios, clientes o proyectos compartidos.',
+    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
+    masterclassCount: 12,
+    duration: '2 Horas',
+    price: 25,
+    isRecent: true,
+    prerequisites: [],
+    modules: [
+      {
+        id: 'portal-m1',
+        title: 'Módulo 1: El Problema de la Edición Compartida',
+        lessons: [
+          {
+            id: 'portal-1-1',
+            title: 'Por qué Excel tradicional falla con equipos',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-1-2',
+            title: 'Soluciones: Google Sheets vs. Portales personalizados',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-1-3',
+            title: 'Arquitectura básica de un portal de edición',
+            duration: '9 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-1-t',
+            title: '📌 Tarea: Mapea los usuarios y permisos de tu portal',
+            duration: '15 min',
+            type: 'reading',
+            content: 'Define quién puede ver, editar y borrar datos en tu portal.'
+          }
+        ]
+      },
+      {
+        id: 'portal-m2',
+        title: 'Módulo 2: Construcción del Portal con Apps Script',
+        lessons: [
+          {
+            id: 'portal-2-1',
+            title: 'Estructura del panel de administración',
+            duration: '12 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-2-2',
+            title: 'Formularios de edición dinámicos',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-2-3',
+            title: 'Validación de datos y prevención de errores',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-2-t',
+            title: '📌 Tarea: Construye el formulario de edición de tu portal',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Crea un formulario que permita editar registros sin errores de formato.'
+          }
+        ]
+      },
+      {
+        id: 'portal-m3',
+        title: 'Módulo 3: Permisos, Seguridad y Despliegue',
+        lessons: [
+          {
+            id: 'portal-3-1',
+            title: 'Sistema de roles: Admin, Editor, Visor',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-3-2',
+            title: 'Autenticación de usuarios con Google',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-3-3',
+            title: 'Despliegue y compartición del portal',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-3-t',
+            title: '📌 Tarea: Configura permisos y comparte tu portal con el equipo',
+            duration: '20 min',
+            type: 'reading',
+            content: 'Asigna roles a 3 usuarios de prueba y verifica que cada uno solo vea lo que le corresponde.'
+          }
+        ]
+      },
+      {
+        id: 'portal-m4',
+        title: 'Módulo 4: Automatización y Mantenimiento',
+        lessons: [
+          {
+            id: 'portal-4-1',
+            title: 'Notificaciones automáticas por email cuando se edita un registro',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-4-2',
+            title: 'Log de actividad: quién editó qué y cuándo',
+            duration: '10 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-4-3',
+            title: 'Backups automáticos y recuperación de datos',
+            duration: '8 min',
+            type: 'video',
+            content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+          },
+          {
+            id: 'portal-4-t',
+            title: '📌 Proyecto Final: Portal completo con logs, notificaciones y permisos',
+            duration: '30 min',
+            type: 'reading',
+            content: 'Despliega tu portal con todas las funciones: edición, permisos, logs y notificaciones. Comparte el enlace con tu equipo.'
           }
         ]
       }
