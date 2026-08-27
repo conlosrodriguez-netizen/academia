@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { Course, User } from './data';
 import { INITIAL_COURSES } from './data';
 import { Header } from './components/Header';
@@ -15,10 +15,20 @@ import { AdminPanel } from './components/AdminPanel';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { LandingTienda } from './components/LandingTienda';
 
+type ViewState = 'home' | 'detail' | 'dashboard' | 'player' | 'about' | 'landing-tienda';
+
+const getViewFromURL = (): ViewState => {
+  if (typeof window === 'undefined') return 'home';
+  const path = window.location.pathname;
+  if (path === '/tienda-digital') return 'landing-tienda';
+  if (path === '/conocenos') return 'about';
+  return 'home';
+};
+
 export const App: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>(INITIAL_COURSES);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [view, setView] = useState<'home' | 'detail' | 'dashboard' | 'player' | 'about' | 'landing-tienda'>('home');
+  const [view, setViewState] = useState<ViewState>(getViewFromURL);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [checkoutCourse, setCheckoutCourse] = useState<Course | null>(null);
@@ -26,6 +36,44 @@ export const App: React.FC = () => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   const selectedCourse = courses.find((c) => c.id === selectedCourseId);
+
+  // Navigation helper that saves to browser history
+  const navigate = useCallback((newView: ViewState, courseId?: string) => {
+    setViewState(newView);
+    if (courseId) setSelectedCourseId(courseId);
+
+    // Save to browser history
+    let path = '/';
+    if (newView === 'landing-tienda') path = '/tienda-digital';
+    else if (newView === 'about') path = '/conocenos';
+    else if (newView === 'detail' && courseId) path = '/curso/' + courseId;
+    else if (newView === 'player') path = '/curso/' + courseId + '/clase';
+    else if (newView === 'dashboard') path = '/mi-cuenta';
+
+    window.history.pushState({ view: newView, courseId }, '', path);
+  }, []);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      const state = e.state;
+      if (state?.view) {
+        setViewState(state.view);
+        if (state.courseId) setSelectedCourseId(state.courseId);
+      } else {
+        // No state = initial page or direct URL
+        setViewState(getViewFromURL());
+        setSelectedCourseId(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    // Set initial state
+    window.history.replaceState({ view: getViewFromURL() }, '', window.location.pathname);
+
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Player view
   if (view === 'player' && selectedCourse && currentUser) {
@@ -38,7 +86,7 @@ export const App: React.FC = () => {
             setCurrentUser({ ...currentUser, completedLessons: [...currentUser.completedLessons, lessonId] });
           }
         }}
-        onBack={() => { setView('dashboard'); setSelectedCourseId(null); }}
+        onBack={() => navigate('dashboard')}
         allCourses={courses}
       />
     );
@@ -46,15 +94,8 @@ export const App: React.FC = () => {
 
   // About page
   if (view === 'about') {
-    return <AboutPage onBack={() => setView('home')} />;
+    return <AboutPage onBack={() => navigate('home')} />;
   }
-
-  // Landing Tienda - accessible via /tienda-digital
-  React.useEffect(() => {
-    if (window.location.pathname === '/tienda-digital') {
-      setView('landing-tienda');
-    }
-  }, []);
 
   // Landing Tienda
   if (view === 'landing-tienda') {
@@ -67,47 +108,40 @@ export const App: React.FC = () => {
       <StudentDashboard
         user={currentUser}
         courses={courses}
-        onSelectCourse={(courseId) => { setSelectedCourseId(courseId); setView('player'); }}
-        onLogout={() => { setCurrentUser(null); setView('home'); setSelectedCourseId(null); }}
+        onSelectCourse={(courseId) => navigate('player', courseId)}
+        onLogout={() => { setCurrentUser(null); navigate('home'); }}
         onUpdateName={(name) => { setCurrentUser({ ...currentUser, name }); }}
       />
     );
   }
 
-  // Detail view (no login required)
+  // Detail view
   if (view === 'detail' && selectedCourse) {
     return (
-      <div style={{ minHeight: '100vh', background: '#f3f4f6' }}>
+      <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
         <Header
           currentUser={currentUser}
           onLogin={() => setIsAuthOpen(true)}
-          onLogout={() => { setCurrentUser(null); setView('home'); setSelectedCourseId(null); }}
+          onLogout={() => { setCurrentUser(null); navigate('home'); }}
           onAdminPanel={() => setIsAdminOpen(true)}
-          onHome={() => { setView('home'); setSelectedCourseId(null); }}
+          onHome={() => navigate('home')}
+          onAbout={() => navigate('about')}
         />
         <CourseDetail
           course={selectedCourse}
           currentUser={currentUser}
           allCourses={courses}
-          onBack={() => { setView('home'); setSelectedCourseId(null); }}
+          onBack={() => navigate('home')}
           onCheckout={(course) => { setCheckoutCourse(course); setIsCheckoutOpen(true); }}
           onAccess={(courseId) => {
             if (currentUser) {
-              setSelectedCourseId(courseId);
-              setView('player');
+              navigate('player', courseId);
             } else {
               setIsAuthOpen(true);
             }
           }}
         />
-        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} onLogin={(user) => {
-          const userWithCourse: User = {
-            ...user,
-            purchasedCourses: ['catalogos-sheets'],
-          };
-          setCurrentUser(userWithCourse);
-          setView('dashboard');
-        }} />
+        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} onLogin={(user) => setCurrentUser(user)} />
         <CheckoutModal
           isOpen={isCheckoutOpen}
           course={checkoutCourse}
@@ -123,7 +157,7 @@ export const App: React.FC = () => {
                 purchasedCourses: [courseId],
               };
               setCurrentUser(newUser);
-              setView('dashboard');
+              navigate('dashboard');
             }
           }}
         />
@@ -140,8 +174,8 @@ export const App: React.FC = () => {
 
   // Home view
   return (
-    <div style={{ minHeight: '100vh', background: '#f3f4f6' }}>
-      <div style={{ background: '#4c1d95', color: 'white', fontSize: 12, fontWeight: 600, padding: '10px 16px', textAlign: 'center' }}>
+    <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
+      <div style={{ background: 'linear-gradient(90deg, #4c1d95, #6d28d9)', color: 'white', fontSize: 12, fontWeight: 600, padding: '10px 16px', textAlign: 'center' }}>
         ✨ CONLOSRODRIGUEZ • Únete a la comunidad:{' '}
         <a href="https://instagram.com/conlosrodriguez" target="_blank" rel="noreferrer" style={{ fontWeight: 700, textDecoration: 'underline', color: '#fde047' }}>
           @conlosrodriguez
@@ -152,7 +186,7 @@ export const App: React.FC = () => {
         currentUser={currentUser}
         onLogin={() => {
           if (currentUser) {
-            setView('dashboard');
+            navigate('dashboard');
           } else {
             setIsAuthOpen(true);
           }
@@ -160,30 +194,26 @@ export const App: React.FC = () => {
         onLogout={() => { setCurrentUser(null); }}
         onAdminPanel={() => setIsAdminOpen(true)}
         onHome={() => {}}
-        onAbout={() => { setView('about'); }}
+        onAbout={() => navigate('about')}
       />
 
       <HeroSection />
 
+      <Methodology />
+
       <CourseGrid
         courses={courses}
-        onViewDetail={(courseId) => { setSelectedCourseId(courseId); setView('detail'); }}
-        onViewLanding={(courseId) => { setSelectedCourseId(courseId); setView('landing-tienda'); }}
+        onViewDetail={(courseId) => navigate('detail', courseId)}
+        onViewLanding={() => navigate('landing-tienda')}
       />
-
-      <Methodology />
 
       <footer style={{ background: '#111827', color: 'white' }}>
         <div className="container" style={{ padding: '48px 24px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
             <img src="./logo-blue.png" alt="CONLOSRODRIGUEZ" style={{ width: 120, height: 'auto' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13 }}>
-              <a href="https://instagram.com/conlosrodriguez" target="_blank" rel="noreferrer" style={{ color: '#d1d5db', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, transition: 'color 0.2s' }}>
-                📷 Instagram
-              </a>
-              <a href="mailto:conlosrodriguez@gmail.com" style={{ color: '#d1d5db', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, transition: 'color 0.2s' }}>
-                ✉️ Soporte
-              </a>
+              <a href="https://instagram.com/conlosrodriguez" target="_blank" rel="noreferrer" style={{ color: '#d1d5db', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>📷 Instagram</a>
+              <a href="mailto:conlosrodriguez@gmail.com" style={{ color: '#d1d5db', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>✉️ Soporte</a>
             </div>
             <div style={{ maxWidth: 400, textAlign: 'center', padding: '12px 16px', borderRadius: 12, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <p style={{ fontSize: 12, color: '#9ca3af', fontStyle: 'italic', lineHeight: 1.6 }}>
@@ -198,13 +228,9 @@ export const App: React.FC = () => {
       </footer>
 
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} onLogin={(user) => {
-        // Auto-asignar el curso de Google Sheets a todos los usuarios
-        const userWithCourse: User = {
-          ...user,
-          purchasedCourses: ['catalogos-sheets'],
-        };
+        const userWithCourse: User = { ...user, purchasedCourses: ['catalogos-sheets'] };
         setCurrentUser(userWithCourse);
-        setView('dashboard');
+        navigate('dashboard');
       }} />
       <CheckoutModal
         isOpen={isCheckoutOpen}
@@ -221,7 +247,7 @@ export const App: React.FC = () => {
               purchasedCourses: [courseId],
             };
             setCurrentUser(newUser);
-            setView('dashboard');
+            navigate('dashboard');
           }
         }}
       />
@@ -232,7 +258,6 @@ export const App: React.FC = () => {
         onCreateCourse={(course) => setCourses([...courses, course])}
         onDeleteCourse={(courseId) => setCourses(courses.filter((c) => c.id !== courseId))}
       />
-
       <WhatsAppButton />
     </div>
   );
