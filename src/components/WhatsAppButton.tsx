@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, MessageCircle } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '5804248804734';
-const WHATSAPP_MESSAGE = encodeURIComponent('Hola! Viene de la página web de CONLOSRODRIGUEZ. Tengo una duda sobre los cursos.');
+const WHATSAPP_MESSAGE = encodeURIComponent('Hola vengo de aprende con los Rodriguez y deseo obtener mas información sobre los cursos.');
 
 export const WhatsAppButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
