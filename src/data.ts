@@ -38,6 +38,7 @@ export interface Course {
   price: number;
   isRecent?: boolean;
   isLive?: boolean;
+  isBestSeller?: boolean;
   liveDate?: string;
   liveTime?: string;
   prerequisites: string[];
@@ -67,6 +68,7 @@ export const INITIAL_COURSES: Course[] = [
     duration: '1.5 Horas',
     price: 5,
     isRecent: true,
+    isBestSeller: true,
     prerequisites: [],
     modules: [
       {

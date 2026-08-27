@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Course, User } from '../data';
-import { ArrowLeft, Clock, BookOpen, PlayCircle, HelpCircle, CheckCircle, CreditCard, FileText, CheckCircle2, Zap, Users } from 'lucide-react';
+import { ArrowLeft, Clock, BookOpen, PlayCircle, HelpCircle, CheckCircle2, FileText, Zap, Users } from 'lucide-react';
 
 interface CourseDetailProps {
   course: Course;
