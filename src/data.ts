@@ -219,7 +219,7 @@ export const INITIAL_COURSES: Course[] = [
     price: 100,
     isRecent: true,
     isLive: true,
-    liveDate: '2026-09-15',
+    liveDate: '2, 3 y 4 de Noviembre',
     liveTime: '7:00 PM',
     prerequisites: [],
     modules: [

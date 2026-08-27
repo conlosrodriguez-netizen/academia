@@ -49,6 +49,13 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail, on
           ${course.price} USD
         </span>
 
+        {/* Pair price badge */}
+        {course.isLive && (
+          <span style={{ position: 'absolute', right: 12, top: 44, borderRadius: 8, background: '#10b981', padding: '4px 10px', fontSize: 10, fontWeight: 700, color: 'white', boxShadow: '0 2px 8px rgba(16,185,129,0.3)' }}>
+            👥 En pareja: $100
+          </span>
+        )}
+
         {/* Title overlay */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px' }}>
           <p style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.75)', marginBottom: 4 }}>{course.subtitle}</p>
