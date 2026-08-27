@@ -36,10 +36,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail, on
           {course.category}
         </span>
 
-        {/* Más Vendido badge */}
+        {/* Estreno badge */}
         {course.isBestSeller && (
           <span style={{ position: 'absolute', left: 12, top: 40, borderRadius: 8, background: 'linear-gradient(135deg, #7c3aed, #6d28d9)', padding: '4px 10px', fontSize: 10, fontWeight: 800, color: 'white', boxShadow: '0 2px 8px rgba(124,58,237,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
-            🔥 Más Vendido
+            🎬 Estreno 12 de Septiembre
           </span>
         )}
 
