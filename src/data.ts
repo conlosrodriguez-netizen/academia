@@ -175,7 +175,7 @@ export const INITIAL_COURSES: Course[] = [
       },
       {
         id: 'tg-m4',
-        title: 'Módulo 4: Control total y gestión súper fácil (Precios, imágenes y edición)',
+        title: 'Módulo 4: QA y Gestión (Control total de tu tienda)',
         lessons: [
           {
             id: 'tg-4-1',
