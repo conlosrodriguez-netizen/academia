@@ -186,11 +186,34 @@ export const LandingTienda: React.FC = () => {
               </div>
             </div>
 
-            {/* Module 2 */}
+            {/* Module 2 - Apps Script */}
             <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
               <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>2</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>El motor detrás de la tienda</span>
+                </div>
+                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Apps Script y estructura web</p>
+              </div>
+              <div style={{ padding: '12px 20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>¿Qué es Apps Script?</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>El archivo .gs y .html</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 3 - Gemini */}
+            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>3</span>
                   <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Programando con IA</span>
                 </div>
                 <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Gemini al rescate y pruebas en vivo</p>
@@ -208,29 +231,6 @@ export const LandingTienda: React.FC = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
                     <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
                     <span>Prueba y Despliegue en vivo</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Module 3 */}
-            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
-              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>3</span>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>El motor detrás de la tienda</span>
-                </div>
-                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Apps Script y estructura web</p>
-              </div>
-              <div style={{ padding: '12px 20px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
-                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
-                    <span>¿Qué es Apps Script?</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
-                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
-                    <span>El archivo .gs y .html</span>
                   </div>
                 </div>
               </div>
