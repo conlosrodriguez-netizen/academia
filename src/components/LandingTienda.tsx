@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2, PlayCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2, PlayCircle, Wallet, Mail } from 'lucide-react';
 
 const ORANGE = '#F59B20';
 const WHATSAPP = '5804248804734';
 
 export const LandingTienda: React.FC = () => {
   const [showCheckout, setShowCheckout] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'select' | 'pagomovil' | 'binance' | 'zinli'>('select');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
@@ -343,44 +344,64 @@ export const LandingTienda: React.FC = () => {
 
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: '#111827', marginBottom: 16, textAlign: 'center' }}>Método de Pago</h3>
 
-                {/* Payment method */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px', borderRadius: 12, border: '2px solid #10b981', background: '#f0fdf4', marginBottom: 20 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Building2 style={{ width: 20, height: 20, color: '#10b981' }} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Pago Móvil</div>
-                    <div style={{ fontSize: 11, color: '#6b7280' }}>Transferencia interbancaria</div>
-                  </div>
-                </div>
-
-                {/* Bank details */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
-                  {[
-                    { label: 'Banco', value: bank, field: 'bank' },
-                    { label: 'Teléfono', value: phone, field: 'phone' },
-                    { label: 'Cédula', value: cedula, field: 'cedula' },
-                  ].map((item) => (
-                    <div key={item.field} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#f9fafb', borderRadius: 8, border: '1px solid #f3f4f6' }}>
-                      <div>
-                        <div style={{ fontSize: 10, color: '#9ca3af', fontWeight: 600, textTransform: 'uppercase' }}>{item.label}</div>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: '#111827', fontFamily: 'monospace' }}>{item.value}</div>
-                      </div>
-                      <button onClick={() => copyToClipboard(item.value, item.field)} style={{ padding: 4, background: 'none', border: 'none', cursor: 'pointer', color: copied === item.field ? '#10b981' : '#9ca3af' }}>
-                        {copied === item.field ? <Check style={{ width: 14, height: 14 }} /> : <Copy style={{ width: 14, height: 14 }} />}
-                      </button>
-                    </div>
-                  ))}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#f0fdf4', borderRadius: 8, border: '1px solid #bbf7d0' }}>
-                    <div>
-                      <div style={{ fontSize: 10, color: '#059669', fontWeight: 600, textTransform: 'uppercase' }}>Monto</div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: '#047857', fontFamily: 'monospace' }}>${price} USD / Bs. {(price * bcvRate).toFixed(2)}</div>
-                    </div>
-                    <button onClick={() => copyToClipboard('Banco: Banesco\nTeléfono: 04248804734\nCédula: 21175955\nMonto: Bs. 15750', 'all')} style={{ padding: 4, background: 'none', border: 'none', cursor: 'pointer', color: copied === 'all' ? '#10b981' : '#9ca3af' }}>
-                      {copied === 'all' ? <Check style={{ width: 14, height: 14 }} /> : <Copy style={{ width: 14, height: 14 }} />}
+                {paymentMethod === 'select' && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+                    <button onClick={() => setPaymentMethod('pagomovil')} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px', borderRadius: 12, border: '2px solid #e5e7eb', background: 'white', cursor: 'pointer', textAlign: 'left' }}>
+                      <div style={{ width: 40, height: 40, borderRadius: 10, background: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Building2 style={{ width: 20, height: 20, color: '#10b981' }} /></div>
+                      <div><div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Pago Móvil</div><div style={{ fontSize: 11, color: '#6b7280' }}>Transferencia interbancaria</div></div>
+                    </button>
+                    <button onClick={() => setPaymentMethod('binance')} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px', borderRadius: 12, border: '2px solid #e5e7eb', background: 'white', cursor: 'pointer', textAlign: 'left' }}>
+                      <div style={{ width: 40, height: 40, borderRadius: 10, background: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Wallet style={{ width: 20, height: 20, color: '#f59e0b' }} /></div>
+                      <div><div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Binance Pay</div><div style={{ fontSize: 11, color: '#6b7280' }}>Pago con USDT</div></div>
+                    </button>
+                    <button onClick={() => setPaymentMethod('zinli')} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px', borderRadius: 12, border: '2px solid #e5e7eb', background: 'white', cursor: 'pointer', textAlign: 'left' }}>
+                      <div style={{ width: 40, height: 40, borderRadius: 10, background: '#ede9fe', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Mail style={{ width: 20, height: 20, color: '#8b5cf6' }} /></div>
+                      <div><div style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Zinli</div><div style={{ fontSize: 11, color: '#6b7280' }}>Billetera digital</div></div>
                     </button>
                   </div>
-                </div>
+                )}
+
+                {paymentMethod === 'pagomovil' && (
+                  <div>
+                    <button onClick={() => setPaymentMethod('select')} style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', color: '#6b7280', fontSize: 11, cursor: 'pointer', marginBottom: 12 }}>← Cambiar método</button>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+                      {[
+                        { label: 'Banco', value: bank, field: 'bank' },
+                        { label: 'Teléfono', value: phone, field: 'phone' },
+                        { label: 'Cédula', value: cedula, field: 'cedula' },
+                        { label: 'Monto', value: `$${price} USD / Bs. ${(price * bcvRate).toFixed(2)}`, field: 'amount' },
+                      ].map((item) => (
+                        <div key={item.field} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#f9fafb', borderRadius: 8, border: '1px solid #f3f4f6' }}>
+                          <div><div style={{ fontSize: 10, color: '#9ca3af', fontWeight: 600, textTransform: 'uppercase' }}>{item.label}</div><div style={{ fontSize: 13, fontWeight: 700, color: '#111827', fontFamily: 'monospace' }}>{item.value}</div></div>
+                          <button onClick={() => copyToClipboard(item.value, item.field)} style={{ padding: 4, background: 'none', border: 'none', cursor: 'pointer', color: copied === item.field ? '#10b981' : '#9ca3af' }}>{copied === item.field ? <Check style={{ width: 14, height: 14 }} /> : <Copy style={{ width: 14, height: 14 }} />}</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'binance' && (
+                  <div>
+                    <button onClick={() => setPaymentMethod('select')} style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', color: '#6b7280', fontSize: 11, cursor: 'pointer', marginBottom: 12 }}>← Cambiar método</button>
+                    <div style={{ background: '#fef3c7', borderRadius: 10, padding: 12, marginBottom: 16, border: '1px solid #fde68a', textAlign: 'center' }}>
+                      <div style={{ fontSize: 11, color: '#92400e', fontWeight: 600 }}>Monto: <strong>${price} USD ≈ {price} USDT</strong></div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <div style={{ flex: 1, borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 8 }}>📧 solcar1992@gmail.com</div>
+                      <button onClick={() => copyToClipboard('solcar1992@gmail.com', 'email')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'email' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'email' ? '#10b981' : '#6b7280' }}>{copied === 'email' ? <Check style={{ width: 18, height: 18 }} /> : <Copy style={{ width: 18, height: 18 }} />}</button>
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'zinli' && (
+                  <div>
+                    <button onClick={() => setPaymentMethod('select')} style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', color: '#6b7280', fontSize: 11, cursor: 'pointer', marginBottom: 12 }}>← Cambiar método</button>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <div style={{ flex: 1, borderRadius: 10, border: '1px solid #e5e7eb', background: '#f9fafb', padding: '10px 14px', fontSize: 13, color: '#111827', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 8 }}>📧 solcar1992@gmail.com</div>
+                      <button onClick={() => copyToClipboard('solcar1992@gmail.com', 'zinli')} style={{ padding: 10, borderRadius: 10, border: '1px solid #e5e7eb', background: copied === 'zinli' ? '#ecfdf5' : 'white', cursor: 'pointer', color: copied === 'zinli' ? '#10b981' : '#6b7280' }}>{copied === 'zinli' ? <Check style={{ width: 18, height: 18 }} /> : <Copy style={{ width: 18, height: 18 }} />}</button>
+                    </div>
+                  </div>
+                )}
 
                 {/* Reference */}
                 <div style={{ marginBottom: 12 }}>
