@@ -57,7 +57,7 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
 
   // Sample benefits based on course
   const benefits = course.id === 'tienda-gemini-sheets'
-    ? ['Tienda en línea funcionando en 2 horas', 'Sin pagar hosting ni dominio', 'Gemini genera el código por ti', 'Actualizaciones desde tu teléfono', 'Guía paso a paso incluida', 'Soporte por WhatsApp']
+    ? ['Aprenderás a crear tu tienda en línea funcionando sin pagar hosting', 'Sin dominio, sin mensualidades, sin costos ocultos', 'Usa Google Sheets como base de datos (gratis)', 'Gemini te genera el código (sin saber programar)', 'Diseño profesional y adaptable a móviles', 'Tips adicionales para potenciar tu tienda']
     : course.id === 'arquitecto-no-code'
     ? ['Diseña sistemas a medida sin código', 'Domina los 4 pilares de la tecnología', 'Crea arquitecturas escalables', 'Proyecto final incluido', 'Sesión EN VIVO con interacción', 'Certificado de finalización']
     : course.id === 'edicion-reels'
