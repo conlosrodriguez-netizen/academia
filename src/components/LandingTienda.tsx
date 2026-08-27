@@ -148,6 +148,124 @@ export const LandingTienda: React.FC = () => {
         </div>
       </section>
 
+      {/* Program */}
+      <section style={{ padding: '60px 20px', background: '#f8fafc' }}>
+        <div style={{ maxWidth: 700, margin: '0 auto' }}>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#111827', textAlign: 'center', marginBottom: 8 }}>
+            Programa del Curso
+          </h2>
+          <p style={{ fontSize: 14, color: '#6b7280', textAlign: 'center', marginBottom: 32 }}>
+            4 módulos prácticos en cápsulas de 6 a 10 minutos
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {/* Module 1 */}
+            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>1</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>La base de tu tienda</span>
+                </div>
+                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Diseño y estructura de datos</p>
+              </div>
+              <div style={{ padding: '12px 20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Bienvenida y Muestra Visual</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>El rol de Google Sheets</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Estructura de la Tabla</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 2 */}
+            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>2</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>Programando con IA</span>
+                </div>
+                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Gemini al rescate y pruebas en vivo</p>
+              </div>
+              <div style={{ padding: '12px 20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Cómo hablarle a Gemini</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Copiado y pegado estratégico</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Prueba y Despliegue en vivo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 3 */}
+            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>3</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>El motor detrás de la tienda</span>
+                </div>
+                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Apps Script y estructura web</p>
+              </div>
+              <div style={{ padding: '12px 20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>¿Qué es Apps Script?</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>El archivo .gs y .html</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Module 4 */}
+            <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+              <div style={{ padding: '16px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ width: 28, height: 28, borderRadius: 8, background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>4</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#111827' }}>QA y Gestión</span>
+                </div>
+                <p style={{ fontSize: 12, color: '#6b7280', marginTop: 4, marginLeft: 38 }}>Control total de tu tienda</p>
+              </div>
+              <div style={{ padding: '12px 20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Actualización instantánea</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Gestión de imágenes</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#475569' }}>
+                    <PlayCircle style={{ width: 14, height: 14, color: '#7c3aed', flexShrink: 0 }} />
+                    <span>Mantenimiento y edición rápida</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section style={{ padding: '60px 20px', background: '#f1f5f9' }}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
