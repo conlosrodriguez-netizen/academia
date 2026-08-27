@@ -141,7 +141,7 @@ export const PagoMovil: React.FC<PagoMovilProps> = ({ amountUSD, courseName, onS
           {rateLoading ? 'Cargando tasa BCV...' : `Bs. ${amountBs}`}
         </div>
         <div style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>
-          {rateLoading ? <Loader2 style={{ width: 12, height: 12, display: 'inline', animation: 'spin 1s linear infinite' }} /> : `BCV: ${bcvRate.toFixed(2)} Bs/USD`}
+          {rateLoading ? <Loader2 style={{ width: 12, height: 12, display: 'inline', animation: 'spin 1s linear infinite' }} /> : `Conversión al dólar BCV: ${bcvRate.toFixed(2)} Bs/USD`}
         </div>
       </div>
 
