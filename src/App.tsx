@@ -42,6 +42,9 @@ export const App: React.FC = () => {
     setViewState(newView);
     if (courseId) setSelectedCourseId(courseId);
 
+    // Scroll to top
+    window.scrollTo(0, 0);
+
     // Save to browser history
     let path = '/';
     if (newView === 'landing-tienda') path = '/tienda-digital';
@@ -61,15 +64,14 @@ export const App: React.FC = () => {
         setViewState(state.view);
         if (state.courseId) setSelectedCourseId(state.courseId);
       } else {
-        // No state = initial page or direct URL
         setViewState(getViewFromURL());
         setSelectedCourseId(null);
       }
+      // Scroll to top when navigating back/forward
+      window.scrollTo(0, 0);
     };
 
     window.addEventListener('popstate', handlePopState);
-
-    // Set initial state
     window.history.replaceState({ view: getViewFromURL() }, '', window.location.pathname);
 
     return () => window.removeEventListener('popstate', handlePopState);
