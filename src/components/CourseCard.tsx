@@ -36,6 +36,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail, on
           {course.category}
         </span>
 
+        {/* EN VIVO badge */}
+        {course.isLive && (
+          <span style={{ position: 'absolute', left: 12, top: 40, borderRadius: 8, background: '#dc2626', padding: '4px 10px', fontSize: 10, fontWeight: 800, color: 'white', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 8px rgba(220,38,38,0.4)' }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'white', animation: 'pulse 1.5s infinite' }}></span>
+            EN VIVO
+          </span>
+        )}
+
         {/* Price */}
         <span style={{ position: 'absolute', right: 12, top: 12, borderRadius: 8, background: ORANGE, padding: '5px 12px', fontSize: 14, fontWeight: 800, color: 'white', boxShadow: '0 2px 8px rgba(245,155,32,0.3)' }}>
           ${course.price} USD
@@ -53,14 +61,23 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetail, on
         {/* Meta */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 12, fontWeight: 500, color: '#6b7280' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <BookOpen style={{ width: 14, height: 14, color: '#a78bfa' }} />
-            {course.masterclassCount} Masterclass
+            <BookOpen className="h-3.5 w-3.5 text-primary-400" />
+            {course.masterclassCount} {course.isLive ? 'Sesión' : 'Clases'}
           </span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <Clock style={{ width: 14, height: 14, color: '#a78bfa' }} />
+            <Clock className="h-3.5 w-3.5 text-primary-400" />
             {course.duration}
           </span>
         </div>
+
+        {/* Live date */}
+        {course.isLive && course.liveDate && (
+          <div style={{ background: '#fef2f2', borderRadius: 8, padding: '8px 12px', border: '1px solid #fecaca' }}>
+            <span style={{ fontSize: 11, color: '#dc2626', fontWeight: 600 }}>
+              📅 {course.liveDate} • {course.liveTime} • Cupos limitados
+            </span>
+          </div>
+        )}
 
         {/* Description */}
         <p style={{ fontSize: 13, color: '#6b7280', lineHeight: 1.6, flex: 1, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>

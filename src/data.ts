@@ -37,6 +37,9 @@ export interface Course {
   duration: string;
   price: number;
   isRecent?: boolean;
+  isLive?: boolean;
+  liveDate?: string;
+  liveTime?: string;
   prerequisites: string[];
   prerequisiteNames?: string[];
   modules: Module[];
@@ -209,12 +212,15 @@ export const INITIAL_COURSES: Course[] = [
     category: 'ARQUITECTURA DE SOFTWARE',
     title: 'Arquitecto de Software No-Code',
     subtitle: 'Aprende a pensar como un ingeniero para diseñar sistemas a medida',
-    description: 'Al finalizar este programa de 8 módulos prácticos, sabrás cómo desglosar cualquier idea de negocio, seleccionar la combinación ideal de tecnologías y construir la arquitectura de un software completo a medida sin escribir código.',
+    description: 'Curso EN VIVO de 1 hora donde aprenderás a desglosar cualquier idea de negocio, seleccionar la combinación ideal de tecnologías y construir la arquitectura de un software completo a medida sin escribir código.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800',
-    masterclassCount: 32,
-    duration: '4 Horas',
+    masterclassCount: 1,
+    duration: '1 Hora EN VIVO',
     price: 100,
     isRecent: true,
+    isLive: true,
+    liveDate: '2026-09-15',
+    liveTime: '7:00 PM',
     prerequisites: [],
     modules: [
       {
