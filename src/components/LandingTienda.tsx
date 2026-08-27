@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2 } from 'lucide-react';
 
 const ORANGE = '#F59B20';
@@ -13,6 +13,18 @@ export const LandingTienda: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
+  const [bcvRate, setBcvRate] = useState<number>(787.52);
+
+  useEffect(() => {
+    fetch('https://dolar-bcv-api.vercel.app/api/dollar')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.rate && data.rate > 100) {
+          setBcvRate(data.rate);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const courseName = 'Crea tu Tienda Digital Gratis con Gemini y Google Sheets';
   const price = 5;
@@ -244,7 +256,7 @@ export const LandingTienda: React.FC = () => {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#f0fdf4', borderRadius: 8, border: '1px solid #bbf7d0' }}>
                     <div>
                       <div style={{ fontSize: 10, color: '#059669', fontWeight: 600, textTransform: 'uppercase' }}>Monto</div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: '#047857', fontFamily: 'monospace' }}>${price} USD / Bs. {(price * 36.5).toFixed(2)}</div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: '#047857', fontFamily: 'monospace' }}>${price} USD / Bs. {(price * bcvRate).toFixed(2)}</div>
                     </div>
                     <button onClick={() => copyToClipboard('Banco: Banesco\nTeléfono: 04248804734\nCédula: 21175955\nMonto: Bs. 15750', 'all')} style={{ padding: 4, background: 'none', border: 'none', cursor: 'pointer', color: copied === 'all' ? '#10b981' : '#9ca3af' }}>
                       {copied === 'all' ? <Check style={{ width: 14, height: 14 }} /> : <Copy style={{ width: 14, height: 14 }} />}
