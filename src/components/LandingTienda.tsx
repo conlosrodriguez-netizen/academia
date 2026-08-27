@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2 } from 'lucide-react';
+import { CheckCircle, ArrowRight, Clock, Users, Star, Shield, Zap, MessageCircle, X, Loader2, Copy, Check, Building2, PlayCircle } from 'lucide-react';
 
 const ORANGE = '#F59B20';
 const WHATSAPP = '5804248804734';
